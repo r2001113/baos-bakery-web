@@ -37,27 +37,31 @@
       line-height: 1.85;
       color: var(--text);
       background-color: var(--bg);
+      -webkit-tap-highlight-color: transparent;
     }
     h1, h2, h3, .brand-text, .motto, .story-quote {
       font-family: "Noto Serif TC", "Songti TC", "PMingLiU", Georgia, serif;
     }
+
+    /* 頂部導覽列 */
     header {
       border-bottom: 1px solid var(--border);
-      padding: 0.85rem 5%;
+      padding: 0.8rem 5%;
       display: flex;
       justify-content: space-between;
       align-items: center;
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(250, 246, 240, 0.95);
-      backdrop-filter: blur(6px);
+      background: rgba(250, 246, 240, 0.96);
+      backdrop-filter: blur(8px);
     }
     .brand {
       display: flex;
       align-items: center;
       gap: 0.65rem;
       text-decoration: none;
+      flex-shrink: 0;
     }
     .brand-logo {
       width: 36px;
@@ -72,28 +76,42 @@
       color: var(--primary);
       letter-spacing: 0.05em;
     }
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 1.4rem;
+    }
     nav a {
-      margin-left: 1.35rem;
       text-decoration: none;
       color: var(--text);
       font-size: 0.95rem;
+      padding: 0.35rem 0.2rem;
       transition: color 0.2s;
+      white-space: nowrap;
     }
     nav a:hover { color: var(--accent); }
+
     main { max-width: 940px; margin: 0 auto; padding: 0 5%; }
-    section { padding: 4.5rem 0; border-bottom: 1px solid var(--border); }
+    section {
+      padding: 4.5rem 0;
+      border-bottom: 1px solid var(--border);
+      scroll-margin-top: 68px;
+    }
     section:last-of-type { border-bottom: none; }
 
-    /* 首屏 Hero 區塊 */
-    #hero { text-align: center; padding: 4.5rem 0 4.5rem; }
+    /* 首屏 Hero 區塊：純粹留白與質感引導 */
+    #hero {
+      text-align: center;
+      padding: 5.5rem 0 4.5rem;
+    }
     .hero-logo {
-      width: 132px;
-      height: 132px;
-      border-radius: 16px;
+      width: 136px;
+      height: 136px;
+      border-radius: 18px;
       object-fit: cover;
-      margin: 0 auto 1.35rem;
+      margin: 0 auto 1.5rem;
       display: block;
-      box-shadow: 0 8px 24px rgba(74, 46, 27, 0.14);
+      box-shadow: 0 10px 28px rgba(74, 46, 27, 0.14);
       border: 2px solid var(--surface);
     }
     .badge {
@@ -101,57 +119,47 @@
       background: var(--surface-alt);
       color: var(--primary);
       border: 1px solid var(--border);
-      padding: 0.35rem 1.1rem;
+      padding: 0.35rem 1.15rem;
       border-radius: 999px;
       font-size: 0.875rem;
       letter-spacing: 0.08em;
-      margin-bottom: 1.15rem;
+      margin-bottom: 1.2rem;
     }
     h1 {
-      font-size: 2.25rem;
+      font-size: 2.35rem;
       color: var(--primary);
       line-height: 1.4;
-      margin-bottom: 1.1rem;
-      letter-spacing: 0.05em;
+      margin-bottom: 1.15rem;
+      letter-spacing: 0.06em;
     }
     .subtitle {
       font-size: 1.08rem;
       color: var(--text-muted);
-      line-height: 1.9;
-      margin: 0 auto 2.2rem;
-      letter-spacing: 0.03em;
-    }
-    .btn-group {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-    .btn {
-      display: inline-block;
-      background: var(--accent);
-      color: #ffffff;
-      padding: 0.8rem 1.85rem;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: 600;
+      line-height: 1.95;
+      margin: 0 auto 2.5rem;
       letter-spacing: 0.04em;
-      transition: background 0.2s;
     }
-    .btn:hover { background: var(--accent-hover); }
-    .btn-outline {
-      display: inline-block;
-      background: var(--surface);
-      color: var(--primary);
-      border: 1px solid var(--accent);
-      padding: 0.8rem 1.85rem;
-      border-radius: 6px;
+    .scroll-cue {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
       text-decoration: none;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      transition: background 0.2s;
+      color: var(--accent);
+      font-size: 0.82rem;
+      letter-spacing: 0.16em;
+      padding: 0.5rem 1rem;
+      transition: opacity 0.2s, transform 0.2s;
     }
-    .btn-outline:hover { background: var(--surface-alt); }
+    .scroll-cue:hover {
+      opacity: 0.8;
+      transform: translateY(3px);
+    }
+    .scroll-line {
+      width: 1px;
+      height: 36px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+      margin-top: 0.5rem;
+    }
 
     h2 {
       font-size: 1.65rem;
@@ -333,12 +341,41 @@
     }
     .contact-list { list-style: none; padding: 0; }
     .contact-list li {
-      padding: 0.7rem 0;
+      padding: 0.75rem 0;
       border-bottom: 1px dashed var(--border);
     }
     .contact-list li:last-child { border-bottom: none; padding-bottom: 0; }
     .contact-list a { color: var(--accent); font-weight: 600; text-decoration: none; }
     .contact-list a:hover { text-decoration: underline; }
+
+    /* 電腦與手機通用：右下角回到頂部按鈕 */
+    .back-to-top {
+      position: fixed;
+      right: 1.25rem;
+      bottom: 1.5rem;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(74, 46, 27, 0.88);
+      color: #fffdf9;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 12px rgba(74, 46, 27, 0.22);
+      z-index: 90;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .back-to-top:hover {
+      background: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    /* 手機版專屬底部單手快捷列（電腦版隱藏） */
+    .mobile-bottom-bar {
+      display: none;
+    }
 
     footer {
       text-align: center;
@@ -348,17 +385,78 @@
       font-size: 0.875rem;
       color: var(--text-muted);
     }
+
+    /* 平板與手機響應式調整 */
     @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        gap: 0.55rem;
+        padding: 0.75rem 4%;
+      }
+      nav {
+        width: 100%;
+        justify-content: space-around;
+        gap: 0.5rem;
+        border-top: 1px solid rgba(229, 216, 200, 0.6);
+        padding-top: 0.45rem;
+      }
+      nav a {
+        font-size: 0.9rem;
+        padding: 0.3rem 0.4rem;
+      }
+      section { scroll-margin-top: 96px; }
       .signature-card, .store-card { grid-template-columns: 1fr; }
       .signature-img-wrap { min-height: 240px; }
       .signature-content, .store-body, .banner-body { padding: 1.5rem; }
     }
+
     @media (max-width: 600px) {
-      h1 { font-size: 1.75rem; }
+      #hero { padding: 3.5rem 0 3.5rem; }
+      h1 { font-size: 1.72rem; }
+      h2 { font-size: 1.45rem; }
       .hero-logo { width: 112px; height: 112px; }
+      .badge { font-size: 0.8rem; padding: 0.3rem 0.9rem; }
+      .subtitle { font-size: 1rem; margin-bottom: 2rem; }
       .subtitle br { display: none; }
       section { padding: 3rem 0; }
-      nav a { margin-left: 0.85rem; font-size: 0.88rem; }
+      .link-card { padding: 1.15rem 1.2rem; }
+
+      /* 手機版顯示底部單手操作列，並調整頁尾與回到頂部位置 */
+      .mobile-bottom-bar {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(255, 253, 249, 0.97);
+        backdrop-filter: blur(8px);
+        border-top: 1px solid var(--border);
+        box-shadow: 0 -4px 16px rgba(74, 46, 27, 0.08);
+        z-index: 100;
+      }
+      .mobile-bottom-bar a {
+        text-align: center;
+        padding: 0.8rem 0.25rem;
+        text-decoration: none;
+        color: var(--primary);
+        font-size: 0.88rem;
+        font-weight: 600;
+        border-right: 1px solid var(--border);
+      }
+      .mobile-bottom-bar a:last-child { border-right: none; }
+      .mobile-bottom-bar a.primary-action {
+        background: var(--accent);
+        color: #ffffff;
+      }
+      .back-to-top {
+        bottom: 4.2rem;
+        right: 1rem;
+        width: 38px;
+        height: 38px;
+        font-size: 1rem;
+      }
+      footer { padding-bottom: 5rem; }
     }
   </style>
 </head>
@@ -383,10 +481,10 @@
       <div class="badge">創立於 1999 年・高雄在地老字號・台灣百大伴手禮</div>
       <h1>綠州堡烘焙・大真烤壽桃</h1>
       <p class="subtitle">深耕高雄在地老字號，二代傳承古法與創新佈局，<br>為美食饕客延續中式漢餅文化的美好滋味。</p>
-      <div class="btn-group">
-        <a href="#signature" class="btn">認識招牌「疼某餅」</a>
-        <a href="#contact" class="btn-outline">門市與聯絡資訊</a>
-      </div>
+      <a href="#signature" class="scroll-cue" aria-label="向下瀏覽品牌與產品">
+        <span>向下探索</span>
+        <span class="scroll-line"></span>
+      </a>
     </section>
 
     <section id="signature">
@@ -462,12 +560,20 @@
       <div class="contact-box">
         <ul class="contact-list">
           <li><strong>服務專線：</strong><a href="tel:073903876">07-390-3876</a>（點擊可直接撥打）</li>
-          <li><strong>門市地址：</strong>高雄市三民區寶中里建興路195號</li>
+          <li><strong>門市地址：</strong><a href="https://www.google.com/maps/search/?api=1&query=高雄市三民區建興路195號" target="_blank" rel="noopener">高雄市三民區寶中里建興路195號（開啟地圖導航）</a></li>
           <li><strong>產品洽詢：</strong>歡迎來電或透過上方 Facebook 粉絲專頁私訊訂購</li>
         </ul>
       </div>
     </section>
   </main>
+
+  <a href="#" class="back-to-top" aria-label="回到頂部">&uarr;</a>
+
+  <div class="mobile-bottom-bar">
+    <a href="tel:073903876">撥打電話</a>
+    <a href="https://www.google.com/maps/search/?api=1&query=高雄市三民區建興路195號" target="_blank" rel="noopener">地圖導航</a>
+    <a href="https://www.facebook.com/baosbakery3903876/?locale=zh_TW" target="_blank" rel="noopener" class="primary-action">FB 粉專</a>
+  </div>
 
   <footer>
     <p>&copy; 1999–2026 綠州堡烘焙 / 大真烤壽桃 / 台灣百大伴手禮. All Rights Reserved.</p>
