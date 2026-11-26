@@ -4,33 +4,40 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>綠州堡烘焙｜大真烤壽桃・台灣百大伴手禮</title>
+  <title>綠州堡烘焙｜大真烤壽桃・1999創立高雄老字號・台灣百大伴手禮</title>
 
-  <meta name="description" content="綠州堡烘焙（大真烤壽桃）榮獲台灣百大伴手禮肯定，秉持責任與原則，堅持原料貨真價實，讓顧客吃得健康信賴。地址：高雄市三民區寶中里建興路195號，電話：07-390-3876。">
+  <meta name="description" content="綠州堡烘焙（大真烤壽桃）創立於1999年，深耕高雄在地老字號烘焙坊，榮獲台灣百大伴手禮。用心做好餅是最大的堅持，二代傳承古法融合創新，發揚中式漢餅文化。地址：高雄市三民區建興路195號，電話：07-390-3876。">
 
   <link rel="canonical" href="https://www.baos-bakery.com.tw/">
 
   <meta property="og:type" content="website">
   <meta property="og:locale" content="zh_TW">
-  <meta property="og:title" content="綠州堡烘焙｜大真烤壽桃・台灣百大伴手禮">
-  <meta property="og:description" content="秉持責任與原則，堅持原料貨真價實，讓顧客吃得健康信賴。高雄市三民區建興路195號。">
+  <meta property="og:title" content="綠州堡烘焙｜大真烤壽桃・1999創立高雄老字號・台灣百大伴手禮">
+  <meta property="og:description" content="創立於1999年，用心做好餅是綠州堡最大的堅持。二代傳承古法與創新融合，發揚中式漢餅文化的美好。">
   <meta property="og:url" content="https://www.baos-bakery.com.tw/">
 
   <style>
     :root {
-      --primary: #1f2937;
-      --accent: #2563eb;
-      --bg: #ffffff;
-      --surface: #f9fafb;
-      --text: #374151;
-      --border: #e5e7eb;
+      --primary: #4a2e1b;       /* 烘焙深焙棕 */
+      --accent: #b47b38;        /* 暖金餅皮褐 */
+      --accent-hover: #966328;
+      --bg: #faf6f0;            /* 溫潤暖米白底色 */
+      --surface: #fffdf9;       /* 卡片柔白 */
+      --surface-alt: #f3ebe0;   /* 區塊暖沙色 */
+      --text: #3e3127;          /* 溫潤深褐內文 */
+      --text-muted: #786657;    /* 次要文字棕灰 */
+      --border: #e5d8c8;        /* 細緻暖框線 */
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans TC", sans-serif;
-      line-height: 1.7;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+      line-height: 1.85;
       color: var(--text);
       background-color: var(--bg);
+    }
+    h1, h2, h3, .brand, .motto {
+      font-family: "Noto Serif TC", "Songti TC", "PMingLiU", Georgia, serif;
     }
     header {
       border-bottom: 1px solid var(--border);
@@ -40,107 +47,276 @@
       align-items: center;
       position: sticky;
       top: 0;
-      background: rgba(255, 255, 255, 0.95);
+      z-index: 100;
+      background: rgba(250, 246, 240, 0.95);
+      backdrop-filter: blur(6px);
     }
-    .brand { font-weight: 700; font-size: 1.15rem; color: var(--primary); text-decoration: none; }
-    nav a { margin-left: 1.2rem; text-decoration: none; color: var(--text); font-size: 0.95rem; }
+    .brand {
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--primary);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+    }
+    nav a {
+      margin-left: 1.4rem;
+      text-decoration: none;
+      color: var(--text);
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
     nav a:hover { color: var(--accent); }
-    main { max-width: 880px; margin: 0 auto; padding: 0 5%; }
-    section { padding: 4rem 0; border-bottom: 1px solid var(--border); }
+    main { max-width: 900px; margin: 0 auto; padding: 0 5%; }
+    section { padding: 4.5rem 0; border-bottom: 1px solid var(--border); }
     section:last-of-type { border-bottom: none; }
-    h1 { font-size: 2.1rem; color: var(--primary); line-height: 1.35; margin-bottom: 1rem; }
-    h2 { font-size: 1.5rem; color: var(--primary); margin-bottom: 1.2rem; }
-    p { margin-bottom: 1rem; }
-    ul { padding-left: 1.25rem; }
-    li { margin-bottom: 0.5rem; }
+
+    /* 首屏 Hero 區塊 */
+    #hero { text-align: center; padding: 5rem 0 4.5rem; }
+    .badge {
+      display: inline-block;
+      background: var(--surface-alt);
+      color: var(--primary);
+      border: 1px solid var(--border);
+      padding: 0.35rem 1rem;
+      border-radius: 999px;
+      font-size: 0.875rem;
+      letter-spacing: 0.08em;
+      margin-bottom: 1.25rem;
+    }
+    h1 {
+      font-size: 2.25rem;
+      color: var(--primary);
+      line-height: 1.4;
+      margin-bottom: 1rem;
+      letter-spacing: 0.04em;
+    }
+    .subtitle {
+      font-size: 1.08rem;
+      color: var(--text-muted);
+      max-width: 660px;
+      margin: 0 auto 2rem;
+    }
+    .btn-group {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
     .btn {
       display: inline-block;
       background: var(--accent);
       color: #ffffff;
-      padding: 0.75rem 1.5rem;
+      padding: 0.8rem 1.8rem;
       border-radius: 6px;
       text-decoration: none;
       font-weight: 600;
-      margin-top: 0.5rem;
+      letter-spacing: 0.04em;
+      transition: background 0.2s;
     }
+    .btn:hover { background: var(--accent-hover); }
+    .btn-outline {
+      display: inline-block;
+      background: var(--surface);
+      color: var(--primary);
+      border: 1px solid var(--accent);
+      padding: 0.8rem 1.8rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      transition: background 0.2s;
+    }
+    .btn-outline:hover { background: var(--surface-alt); }
+
+    h2 {
+      font-size: 1.65rem;
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.04em;
+    }
+    p { margin-bottom: 1.15rem; }
+
+    /* 精神標語引言框 */
+    .motto-box {
+      background: var(--surface);
+      border-left: 4px solid var(--accent);
+      border-top: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 1.5rem 1.75rem;
+      border-radius: 0 8px 8px 0;
+      margin: 1.5rem 0 1.75rem;
+    }
+    .motto {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.4rem;
+    }
+    .motto-sub {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 0;
+    }
+
+    /* 特色卡片 */
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 1.5rem;
       margin-top: 1.5rem;
     }
     .card {
       background: var(--surface);
-      padding: 1.5rem;
-      border-radius: 8px;
+      padding: 1.75rem;
+      border-radius: 10px;
       border: 1px solid var(--border);
+      box-shadow: 0 2px 10px rgba(74, 46, 27, 0.04);
     }
-    .card h3 { font-size: 1.15rem; color: var(--primary); margin-bottom: 0.5rem; }
+    .card h3 {
+      font-size: 1.2rem;
+      color: var(--primary);
+      margin-bottom: 0.65rem;
+    }
+    .card p { font-size: 0.96rem; margin-bottom: 0; }
+
+    /* 媒體報導與動態連結 */
+    .link-card {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 1.25rem 1.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      color: var(--text);
+      margin-bottom: 1rem;
+      transition: border-color 0.2s, transform 0.15s;
+    }
+    .link-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+    .link-card strong { color: var(--primary); font-size: 1.05rem; display: block; margin-bottom: 0.2rem; }
+    .link-card span { font-size: 0.9rem; color: var(--text-muted); }
+    .link-arrow { color: var(--accent); font-weight: 700; font-size: 1.1rem; margin-left: 1rem; }
+
+    /* 聯絡資訊區塊 */
+    .contact-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.75rem;
+    }
+    .contact-list { list-style: none; padding: 0; }
+    .contact-list li {
+      padding: 0.65rem 0;
+      border-bottom: 1px dashed var(--border);
+    }
+    .contact-list li:last-child { border-bottom: none; padding-bottom: 0; }
+    .contact-list a { color: var(--accent); font-weight: 600; text-decoration: none; }
+    .contact-list a:hover { text-decoration: underline; }
+
     footer {
       text-align: center;
-      padding: 2rem 5%;
-      background: var(--surface);
+      padding: 2.5rem 5%;
+      background: var(--surface-alt);
+      border-top: 1px solid var(--border);
       font-size: 0.875rem;
-      color: #6b7280;
+      color: var(--text-muted);
     }
     @media (max-width: 600px) {
-      h1 { font-size: 1.7rem; }
-      section { padding: 2.5rem 0; }
+      h1 { font-size: 1.75rem; }
+      section { padding: 3rem 0; }
+      nav a { margin-left: 0.9rem; font-size: 0.9rem; }
     }
   </style>
 </head>
 <body>
 
   <header>
-    <a href="#" class="brand">綠州堡烘焙 / 大真烤壽桃</a>
+    <a href="#" class="brand">綠州堡烘焙｜大真烤壽桃</a>
     <nav>
-      <a href="#about">品牌理念</a>
-      <a href="#services">核心特色</a>
-      <a href="#contact">聯絡方式</a>
+      <a href="#about">品牌故事</a>
+      <a href="#features">招牌特色</a>
+      <a href="#media">報導與動態</a>
+      <a href="#contact">門市資訊</a>
     </nav>
   </header>
 
   <main>
     <section id="hero">
-      <h1>綠州堡烘焙・大真烤壽桃｜台灣百大伴手禮</h1>
-      <p>始終秉持將最好的品質呈現給顧客，「這是種責任與原則」。</p>
-      <a href="#contact" class="btn">立即聯繫洽詢</a>
+      <div class="badge">創立於 1999 年・高雄在地老字號・台灣百大伴手禮</div>
+      <h1>綠州堡烘焙・大真烤壽桃</h1>
+      <p class="subtitle">深耕高雄在地老字號烘焙店家，二代傳承古法工藝與創新佈局，為美食饕客延續中式漢餅文化的美好滋味。</p>
+      <div class="btn-group">
+        <a href="https://www.facebook.com/baosbakery3903876/?locale=zh_TW" target="_blank" rel="noopener" class="btn">前往官方 Facebook 粉絲專頁</a>
+        <a href="#contact" class="btn-outline">電話與門市地址</a>
+      </div>
     </section>
 
     <section id="about">
-      <h2>品牌理念</h2>
-      <p>綠州堡烘焙-台灣百大伴手禮 始終秉持的就是要將最好的品質呈現給顧客 「這是種責任與原則」 經營理念就是要堅持在於“食”的訴求上 堅持原料貨真價實，讓顧客吃得健康信賴。</p>
+      <h2>品牌故事與二代傳承</h2>
+      <div class="motto-box">
+        <p class="motto">「用心做好餅是綠州堡最大的堅持」</p>
+        <p class="motto-sub">始終秉持將最好的品質呈現給顧客——這是種責任與原則。</p>
+      </div>
+      <p>創立於 1999 年，綠州堡烘焙深耕高雄二十餘載，是陪伴無數在地家庭節慶祝壽、婚嫁喜慶與日常茶點的老字號烘焙坊。經營理念始終專注於「食」的本質訴求，堅持原料貨真價實，讓每一位顧客都能吃得健康、買得信賴。</p>
+      <p>如今由二代接棒為顧客服務，在傳統古法傳承與創新佈局的新舊融合之下，綠州堡以更成熟、新穎且具競爭力的姿態，持續為美食饕客打造安心美味的糕餅，傳承並發揚中式漢餅文化的美好。</p>
     </section>
 
-    <section id="services">
-      <h2>核心特色</h2>
+    <section id="features">
+      <h2>招牌與核心堅持</h2>
       <div class="grid">
         <div class="card">
           <h3>台灣百大伴手禮</h3>
-          <p>嚴選食材製作伴手禮與特色烘焙品，送禮自用皆安心。</p>
+          <p>獲選台灣百大伴手禮肯定，嚴選在地優質食材製作特色漢餅與禮盒，年節送禮或招待親友皆體面大方。</p>
         </div>
         <div class="card">
           <h3>大真烤壽桃</h3>
-          <p>以細火烘烤呈現紮實風味與傳統祝壽寓意。</p>
+          <p>承襲傳統祝壽文化與細火烘焙工藝，外皮香氣醇厚、內餡紮實飽滿，為神明祝壽與長輩慶生的經典首選。</p>
         </div>
         <div class="card">
           <h3>原料貨真價實</h3>
-          <p>堅持「食」的訴求與品質原則，讓顧客吃得健康信賴。</p>
+          <p>遵循「用心做好餅」的原則，嚴格把關每一道烘焙製程與用料，新舊融合呈現純粹健康的好味道。</p>
         </div>
       </div>
     </section>
 
+    <section id="media">
+      <h2>媒體報導與最新動態</h2>
+      <p>最新產品資訊、節慶預購與門市公告，主要於官方 Facebook 粉絲專頁即時更新：</p>
+      <a href="https://www.facebook.com/baosbakery3903876/?locale=zh_TW" target="_blank" rel="noopener" class="link-card">
+        <div>
+          <strong>綠州堡烘焙 官方 Facebook 粉絲專頁</strong>
+          <span>查看最新產品動態、節慶禮盒消息與線上私訊洽詢</span>
+        </div>
+        <div class="link-arrow">前往 &rarr;</div>
+      </a>
+      <a href="https://www.estwedding.com/archives/8396" target="_blank" rel="noopener" class="link-card">
+        <div>
+          <strong>相關專題報導與品牌介紹</strong>
+          <span>閱讀綠州堡烘焙與大真烤壽桃的工藝故事與特色分享</span>
+        </div>
+        <div class="link-arrow">閱讀 &rarr;</div>
+      </a>
+    </section>
+
     <section id="contact">
-      <h2>聯絡方式</h2>
-      <ul>
-        <li>服務專線：<a href="tel:073903876">07 390 3876</a></li>
-        <li>門市地址：高雄市三民區寶中里建興路195號</li>
-      </ul>
+      <h2>門市與聯絡資訊</h2>
+      <div class="contact-box">
+        <ul class="contact-list">
+          <li><strong>服務專線：</strong><a href="tel:073903876">07-390-3876</a>（點擊可直接撥打）</li>
+          <li><strong>門市地址：</strong>高雄市三民區寶中里建興路195號</li>
+          <li><strong>官方社群：</strong><a href="https://www.facebook.com/baosbakery3903876/?locale=zh_TW" target="_blank" rel="noopener">綠州堡烘焙 Facebook 粉絲專頁</a></li>
+        </ul>
+      </div>
     </section>
   </main>
 
   <footer>
-    <p>&copy; 2026 綠州堡烘焙 / 大真烤壽桃 / 台灣百大伴手禮. All Rights Reserved.</p>
+    <p>&copy; 1999–2026 綠州堡烘焙 / 大真烤壽桃 / 台灣百大伴手禮. All Rights Reserved.</p>
   </footer>
 
 </body>
