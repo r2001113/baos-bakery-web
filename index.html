@@ -6,7 +6,7 @@
 
   <title>綠州堡烘焙｜疼某餅・大真烤壽桃・1999創立高雄老字號・台灣百大伴手禮</title>
 
-  <meta name="description" content="綠州堡烘焙創立於1999年，深耕高雄在地老字號烘焙坊，榮獲台灣百大伴手禮。代表作「疼某餅」軟糯細緻不黏牙、清酥不易掉屑，與經典大真烤壽桃，二代傳承古法融合創新。地址：高雄市三民區建興路195號，電話：07-390-3876。">
+  <meta name="description" content="綠州堡烘焙創立於1999年，高雄在地老字號烘焙坊，榮獲台灣百大伴手禮。代表作「疼某餅」軟糯細緻不黏牙、清酥不易掉屑，與經典大真烤壽桃。地址：高雄市三民區建興路195號，電話：07-390-3876。">
 
   <link rel="canonical" href="https://www.baos-bakery.com.tw/">
   <link rel="icon" type="image/jpeg" href="images/logo.jpg">
@@ -18,42 +18,48 @@
   <meta property="og:url" content="https://www.baos-bakery.com.tw/">
   <meta property="og:image" content="https://www.baos-bakery.com.tw/images/logo.jpg">
 
+  <!-- 開源免費商用字體：細字重思源宋體 + 思源黑體 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500&family=Noto+Serif+TC:wght@400;500&display=swap" rel="stylesheet">
+
   <style>
     :root {
       --primary: #4a2e1b;       /* 烘焙深焙棕 */
       --accent: #b47b38;        /* 暖金餅皮褐 */
       --accent-hover: #966328;
       --bg: #faf6f0;            /* 溫潤暖米白底色 */
-      --surface: #fffdf9;       /* 卡片柔白 */
-      --surface-alt: #f3ebe0;   /* 區塊暖沙色 */
+      --surface-alt: #f2eadf;   /* 柔和暖沙點綴 */
       --text: #3e3127;          /* 溫潤深褐內文 */
-      --text-muted: #786657;    /* 次要文字棕灰 */
-      --border: #e5d8c8;        /* 細緻暖框線 */
+      --text-muted: #857466;    /* 輕盈棕灰次要文字 */
+      --border: #e6dacb;        /* 極細暖框線 */
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
-      line-height: 1.85;
+      font-family: "Noto Sans TC", -apple-system, BlinkMacSystemFont, "Microsoft JhengHei", sans-serif;
+      font-weight: 400;
+      line-height: 1.9;
       color: var(--text);
       background-color: var(--bg);
       -webkit-tap-highlight-color: transparent;
     }
     h1, h2, h3, .brand-text, .motto, .story-quote {
       font-family: "Noto Serif TC", "Songti TC", "PMingLiU", Georgia, serif;
+      font-weight: 400;
     }
 
-    /* 頂部導覽列 */
+    /* 頂部極簡導覽列 */
     header {
-      border-bottom: 1px solid var(--border);
-      padding: 0.8rem 5%;
+      border-bottom: 1px solid rgba(230, 218, 203, 0.7);
+      padding: 0.9rem 5%;
       display: flex;
       justify-content: space-between;
       align-items: center;
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(250, 246, 240, 0.96);
+      background: rgba(250, 246, 240, 0.94);
       backdrop-filter: blur(8px);
     }
     .brand {
@@ -64,306 +70,261 @@
       flex-shrink: 0;
     }
     .brand-logo {
-      width: 36px;
-      height: 36px;
+      width: 34px;
+      height: 34px;
       border-radius: 6px;
       object-fit: cover;
-      border: 1px solid var(--border);
     }
     .brand-text {
-      font-weight: 700;
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       color: var(--primary);
-      letter-spacing: 0.05em;
+      letter-spacing: 0.08em;
     }
     nav {
       display: flex;
       align-items: center;
-      gap: 1.4rem;
+      gap: 1.6rem;
     }
     nav a {
       text-decoration: none;
-      color: var(--text);
-      font-size: 0.95rem;
-      padding: 0.35rem 0.2rem;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      letter-spacing: 0.06em;
+      padding: 0.3rem 0.2rem;
       transition: color 0.2s;
       white-space: nowrap;
     }
-    nav a:hover { color: var(--accent); }
+    nav a:hover { color: var(--primary); }
 
-    main { max-width: 940px; margin: 0 auto; padding: 0 5%; }
+    main { max-width: 920px; margin: 0 auto; padding: 0 5%; }
     section {
-      padding: 4.5rem 0;
-      border-bottom: 1px solid var(--border);
+      padding: 5.5rem 0;
+      border-bottom: 1px solid rgba(230, 218, 203, 0.65);
       scroll-margin-top: 68px;
     }
     section:last-of-type { border-bottom: none; }
 
-    /* 首屏 Hero 區塊：純粹留白與質感引導 */
+    /* 第一視覺：首屏留白封面 */
     #hero {
       text-align: center;
-      padding: 5.5rem 0 4.5rem;
+      padding: 6.5rem 0 5.5rem;
     }
     .hero-logo {
-      width: 136px;
-      height: 136px;
+      width: 124px;
+      height: 124px;
       border-radius: 18px;
       object-fit: cover;
-      margin: 0 auto 1.5rem;
+      margin: 0 auto 1.75rem;
       display: block;
-      box-shadow: 0 10px 28px rgba(74, 46, 27, 0.14);
-      border: 2px solid var(--surface);
+      box-shadow: 0 12px 32px rgba(74, 46, 27, 0.12);
     }
-    .badge {
-      display: inline-block;
-      background: var(--surface-alt);
-      color: var(--primary);
-      border: 1px solid var(--border);
-      padding: 0.35rem 1.15rem;
-      border-radius: 999px;
-      font-size: 0.875rem;
-      letter-spacing: 0.08em;
-      margin-bottom: 1.2rem;
+    .hero-meta {
+      font-size: 0.85rem;
+      color: var(--accent);
+      letter-spacing: 0.18em;
+      margin-bottom: 0.9rem;
     }
     h1 {
-      font-size: 2.35rem;
+      font-size: 2.3rem;
       color: var(--primary);
-      line-height: 1.4;
-      margin-bottom: 1.15rem;
-      letter-spacing: 0.06em;
+      line-height: 1.45;
+      margin-bottom: 1.25rem;
+      letter-spacing: 0.1em;
     }
-    .subtitle {
-      font-size: 1.08rem;
+    .hero-motto {
+      font-size: 1.05rem;
+      font-weight: 300;
       color: var(--text-muted);
-      line-height: 1.95;
-      margin: 0 auto 2.5rem;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.08em;
+      margin: 0 auto 3rem;
     }
     .scroll-cue {
       display: inline-flex;
       flex-direction: column;
       align-items: center;
       text-decoration: none;
-      color: var(--accent);
-      font-size: 0.82rem;
-      letter-spacing: 0.16em;
+      color: var(--text-muted);
+      font-size: 0.78rem;
+      letter-spacing: 0.2em;
       padding: 0.5rem 1rem;
-      transition: opacity 0.2s, transform 0.2s;
+      transition: color 0.2s, transform 0.2s;
     }
     .scroll-cue:hover {
-      opacity: 0.8;
+      color: var(--accent);
       transform: translateY(3px);
     }
     .scroll-line {
       width: 1px;
-      height: 36px;
+      height: 40px;
       background: linear-gradient(to bottom, var(--accent), transparent);
-      margin-top: 0.5rem;
+      margin-top: 0.6rem;
     }
 
-    h2 {
-      font-size: 1.65rem;
-      color: var(--primary);
-      margin-bottom: 1.5rem;
-      letter-spacing: 0.04em;
+    /* 區塊小標 */
+    .section-eyebrow {
+      font-size: 0.8rem;
+      color: var(--accent);
+      letter-spacing: 0.16em;
+      margin-bottom: 0.5rem;
+      display: block;
     }
-    p { margin-bottom: 1.15rem; }
 
-    /* 代表作：疼某餅主推區塊 */
-    .signature-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      overflow: hidden;
+    /* 第二視覺：鎮店代表作「疼某餅」 */
+    .signature-layout {
       display: grid;
-      grid-template-columns: 1fr 1.15fr;
-      box-shadow: 0 6px 24px rgba(74, 46, 27, 0.06);
-    }
-    .signature-img-wrap {
-      background: var(--surface-alt);
-      min-height: 320px;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 3.25rem;
+      align-items: center;
     }
     .signature-img {
       width: 100%;
-      height: 100%;
+      aspect-ratio: 4 / 5;
       object-fit: cover;
+      border-radius: 12px;
       display: block;
+      box-shadow: 0 10px 28px rgba(74, 46, 27, 0.08);
     }
-    .signature-content {
-      padding: 2.25rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-    .tag-label {
-      display: inline-block;
-      align-self: flex-start;
-      background: var(--surface-alt);
-      color: var(--accent-hover);
-      font-size: 0.82rem;
-      font-weight: 600;
-      padding: 0.25rem 0.8rem;
-      border-radius: 4px;
-      margin-bottom: 0.75rem;
-      letter-spacing: 0.06em;
-    }
-    .signature-content h3 {
-      font-size: 1.55rem;
+    .signature-content h2 {
+      font-size: 2.1rem;
       color: var(--primary);
-      margin-bottom: 1rem;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.45rem;
+    }
+    .signature-lead {
+      font-size: 1.08rem;
+      color: var(--accent-hover);
+      letter-spacing: 0.05em;
+      margin-bottom: 1.5rem;
+    }
+    .signature-content p {
+      font-size: 0.98rem;
+      font-weight: 300;
+      margin-bottom: 1.15rem;
     }
     .story-quote {
-      background: var(--bg);
-      border-left: 3px solid var(--accent);
-      padding: 1rem 1.25rem;
-      margin: 0.75rem 0 1.2rem;
-      border-radius: 0 8px 8px 0;
+      border-left: 2px solid var(--accent);
+      padding: 0.35rem 0 0.35rem 1.25rem;
+      margin: 1.5rem 0;
       color: var(--primary);
       font-size: 0.98rem;
-      line-height: 1.75;
+      line-height: 1.85;
+      letter-spacing: 0.03em;
     }
     .signature-closing {
-      color: var(--accent-hover);
-      font-weight: 600;
-      margin-bottom: 0;
-    }
-
-    /* 精神標語引言框 */
-    .motto-box {
-      background: var(--surface);
-      border-left: 4px solid var(--accent);
-      border-top: 1px solid var(--border);
-      border-right: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 1.5rem 1.75rem;
-      border-radius: 0 8px 8px 0;
-      margin: 1.5rem 0 1.75rem;
-    }
-    .motto {
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--primary);
-      margin-bottom: 0.4rem;
-    }
-    .motto-sub {
       font-size: 0.95rem;
       color: var(--text-muted);
       margin-bottom: 0;
     }
 
-    /* 大真烤壽桃（完整寬幅海報卡片） */
-    .banner-card {
-      background: var(--surface);
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      box-shadow: 0 4px 16px rgba(74, 46, 27, 0.05);
-      overflow: hidden;
-      margin-bottom: 2rem;
+    /* 經典工藝與老字號門市 */
+    .duo-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2.75rem;
+      margin-top: 1.25rem;
     }
-    .banner-img {
+    .duo-item img {
       width: 100%;
-      height: auto;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      border-radius: 10px;
       display: block;
-      border-bottom: 1px solid var(--border);
+      margin-bottom: 1.35rem;
+      box-shadow: 0 8px 22px rgba(74, 46, 27, 0.07);
     }
-    .banner-body {
-      padding: 1.75rem 2rem;
+    .img-focus-shoutao {
+      object-position: 78% center;
     }
-    .banner-body h3 {
-      font-size: 1.35rem;
+    .duo-item h3 {
+      font-size: 1.4rem;
       color: var(--primary);
+      letter-spacing: 0.06em;
       margin-bottom: 0.65rem;
     }
-    .banner-body p {
+    .duo-item p {
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: var(--text-muted);
       margin-bottom: 0;
     }
 
-    /* 門市圖文卡片（左圖右文） */
-    .store-card {
-      background: var(--surface);
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      box-shadow: 0 4px 16px rgba(74, 46, 27, 0.05);
-      overflow: hidden;
-      display: grid;
-      grid-template-columns: 1.15fr 1fr;
+    /* 品牌傳承 */
+    .about-wrap {
+      max-width: 640px;
+      margin: 0 auto;
+      text-align: center;
     }
-    .store-img {
-      width: 100%;
-      height: 100%;
-      min-height: 260px;
-      object-fit: cover;
-      display: block;
-    }
-    .store-body {
-      padding: 2rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-    .store-body h3 {
-      font-size: 1.3rem;
+    .about-wrap h2 {
+      font-size: 1.75rem;
       color: var(--primary);
-      margin-bottom: 0.75rem;
+      letter-spacing: 0.08em;
+      margin-bottom: 1.5rem;
     }
-    .store-body p {
-      margin-bottom: 0;
-    }
-
-    /* 媒體報導與動態連結 */
-    .link-card {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      padding: 1.35rem 1.6rem;
-      border-radius: 8px;
-      text-decoration: none;
+    .about-wrap p {
+      font-size: 0.98rem;
+      font-weight: 300;
       color: var(--text);
-      margin-bottom: 1rem;
-      transition: border-color 0.2s, transform 0.15s;
+      margin-bottom: 1.25rem;
     }
-    .link-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-2px);
-    }
-    .link-card strong { color: var(--primary); font-size: 1.05rem; display: block; margin-bottom: 0.25rem; }
-    .link-card span { font-size: 0.92rem; color: var(--text-muted); }
-    .link-arrow { color: var(--accent); font-weight: 700; font-size: 1.1rem; margin-left: 1rem; white-space: nowrap; }
+    .about-wrap p:last-child { margin-bottom: 0; }
 
-    /* 聯絡資訊區塊 */
-    .contact-box {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1.75rem;
+    /* 第三視覺：門市聯絡與報導 */
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 3rem;
+      align-items: start;
     }
-    .contact-list { list-style: none; padding: 0; }
-    .contact-list li {
+    .info-block h2 {
+      font-size: 1.4rem;
+      color: var(--primary);
+      letter-spacing: 0.06em;
+      margin-bottom: 1.25rem;
+    }
+    .clean-list {
+      list-style: none;
+    }
+    .clean-list li {
       padding: 0.75rem 0;
-      border-bottom: 1px dashed var(--border);
+      border-bottom: 1px solid var(--border);
+      font-size: 0.92rem;
+      font-weight: 300;
+      color: var(--text-muted);
     }
-    .contact-list li:last-child { border-bottom: none; padding-bottom: 0; }
-    .contact-list a { color: var(--accent); font-weight: 600; text-decoration: none; }
-    .contact-list a:hover { text-decoration: underline; }
+    .clean-list li:last-child { border-bottom: none; }
+    .clean-list strong {
+      font-weight: 500;
+      color: var(--text);
+      margin-right: 0.5rem;
+    }
+    .clean-list a {
+      color: var(--primary);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(180, 123, 56, 0.45);
+      padding-bottom: 1px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .clean-list a:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
 
-    /* 電腦與手機通用：右下角回到頂部按鈕 */
+    /* 右下角回到頂部按鈕 */
     .back-to-top {
       position: fixed;
       right: 1.25rem;
       bottom: 1.5rem;
-      width: 42px;
-      height: 42px;
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
-      background: rgba(74, 46, 27, 0.88);
-      color: #fffdf9;
+      background: rgba(74, 46, 27, 0.85);
+      color: #faf6f0;
       text-decoration: none;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.1rem;
-      box-shadow: 0 4px 12px rgba(74, 46, 27, 0.22);
+      font-size: 1rem;
+      box-shadow: 0 4px 12px rgba(74, 46, 27, 0.18);
       z-index: 90;
       transition: background 0.2s, transform 0.2s;
     }
@@ -372,18 +333,17 @@
       transform: translateY(-2px);
     }
 
-    /* 手機版專屬底部單手快捷列（電腦版隱藏） */
-    .mobile-bottom-bar {
-      display: none;
-    }
+    /* 手機版專屬底部單手快捷列 */
+    .mobile-bottom-bar { display: none; }
 
     footer {
       text-align: center;
       padding: 2.5rem 5%;
-      background: var(--surface-alt);
-      border-top: 1px solid var(--border);
-      font-size: 0.875rem;
+      font-size: 0.8rem;
+      font-weight: 300;
+      letter-spacing: 0.05em;
       color: var(--text-muted);
+      border-top: 1px solid rgba(230, 218, 203, 0.65);
     }
 
     /* 平板與手機響應式調整 */
@@ -396,32 +356,29 @@
       nav {
         width: 100%;
         justify-content: space-around;
-        gap: 0.5rem;
-        border-top: 1px solid rgba(229, 216, 200, 0.6);
+        gap: 0.4rem;
+        border-top: 1px solid rgba(230, 218, 203, 0.5);
         padding-top: 0.45rem;
       }
-      nav a {
-        font-size: 0.9rem;
-        padding: 0.3rem 0.4rem;
+      nav a { font-size: 0.88rem; }
+      section { padding: 4rem 0; scroll-margin-top: 96px; }
+      .signature-layout, .duo-grid, .info-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
       }
-      section { scroll-margin-top: 96px; }
-      .signature-card, .store-card { grid-template-columns: 1fr; }
-      .signature-img-wrap { min-height: 240px; }
-      .signature-content, .store-body, .banner-body { padding: 1.5rem; }
+      .signature-img { aspect-ratio: 4 / 3; }
     }
 
     @media (max-width: 600px) {
-      #hero { padding: 3.5rem 0 3.5rem; }
-      h1 { font-size: 1.72rem; }
-      h2 { font-size: 1.45rem; }
-      .hero-logo { width: 112px; height: 112px; }
-      .badge { font-size: 0.8rem; padding: 0.3rem 0.9rem; }
-      .subtitle { font-size: 1rem; margin-bottom: 2rem; }
-      .subtitle br { display: none; }
-      section { padding: 3rem 0; }
-      .link-card { padding: 1.15rem 1.2rem; }
+      #hero { padding: 4rem 0 3.5rem; }
+      h1 { font-size: 1.75rem; letter-spacing: 0.06em; }
+      .hero-logo { width: 108px; height: 108px; }
+      .hero-meta { font-size: 0.78rem; letter-spacing: 0.12em; }
+      .hero-motto { font-size: 0.98rem; margin-bottom: 2.25rem; }
+      .signature-content h2 { font-size: 1.75rem; }
+      .about-wrap { text-align: left; }
+      .about-wrap h2 { font-size: 1.5rem; }
 
-      /* 手機版顯示底部單手操作列，統一三顆按鈕色系 */
       .mobile-bottom-bar {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -429,10 +386,10 @@
         bottom: 0;
         left: 0;
         right: 0;
-        background: rgba(255, 253, 249, 0.97);
+        background: rgba(250, 246, 240, 0.97);
         backdrop-filter: blur(8px);
         border-top: 1px solid var(--border);
-        box-shadow: 0 -4px 16px rgba(74, 46, 27, 0.08);
+        box-shadow: 0 -4px 16px rgba(74, 46, 27, 0.06);
         z-index: 100;
       }
       .mobile-bottom-bar a {
@@ -440,21 +397,18 @@
         padding: 0.85rem 0.25rem;
         text-decoration: none;
         color: var(--primary);
-        font-size: 0.9rem;
-        font-weight: 600;
+        font-size: 0.88rem;
+        font-weight: 500;
+        letter-spacing: 0.04em;
         border-right: 1px solid var(--border);
-        transition: background 0.15s;
       }
       .mobile-bottom-bar a:last-child { border-right: none; }
-      .mobile-bottom-bar a:active {
-        background: var(--surface-alt);
-      }
+      .mobile-bottom-bar a:active { background: var(--surface-alt); }
       .back-to-top {
         bottom: 4.2rem;
         right: 1rem;
-        width: 38px;
-        height: 38px;
-        font-size: 1rem;
+        width: 36px;
+        height: 36px;
       }
       footer { padding-bottom: 5rem; }
     }
@@ -465,104 +419,91 @@
   <header>
     <a href="#" class="brand">
       <img src="images/logo.jpg" alt="綠州堡烘焙 Logo" class="brand-logo">
-      <span class="brand-text">綠州堡烘焙｜大真烤壽桃</span>
+      <span class="brand-text">綠州堡烘焙</span>
     </a>
     <nav>
-      <a href="#signature">招牌疼某餅</a>
+      <a href="#signature">疼某餅</a>
+      <a href="#craft">烤壽桃與門市</a>
       <a href="#about">品牌故事</a>
-      <a href="#features">經典與門市</a>
-      <a href="#contact">聯絡資訊</a>
+      <a href="#contact">聯絡我們</a>
     </nav>
   </header>
 
   <main>
     <section id="hero">
-      <img src="images/logo.jpg" alt="綠州堡烘焙 BAOS BAKERY 品牌標誌" class="hero-logo">
-      <div class="badge">創立於 1999 年・高雄在地老字號・台灣百大伴手禮</div>
+      <img src="images/logo.jpg" alt="綠州堡烘焙 BAOS BAKERY" class="hero-logo">
+      <p class="hero-meta">SINCE 1999・高雄老字號・台灣百大伴手禮</p>
       <h1>綠州堡烘焙・大真烤壽桃</h1>
-      <p class="subtitle">深耕高雄在地老字號，二代傳承古法與創新佈局，<br>為美食饕客延續中式漢餅文化的美好滋味。</p>
-      <a href="#signature" class="scroll-cue" aria-label="向下瀏覽品牌與產品">
-        <span>向下探索</span>
+      <p class="hero-motto">「用心做好餅，是綠州堡最大的堅持。」</p>
+      <a href="#signature" class="scroll-cue" aria-label="向下瀏覽">
+        <span>往下品味</span>
         <span class="scroll-line"></span>
       </a>
     </section>
 
     <section id="signature">
-      <h2>鎮店代表作・疼某餅</h2>
-      <div class="signature-card">
-        <div class="signature-img-wrap">
-          <img src="images/tengmou-cake.jpg" alt="綠州堡烘焙代表作疼某餅" class="signature-img">
-        </div>
+      <div class="signature-layout">
+        <img src="images/tengmou-cake.jpg" alt="綠州堡烘焙代表作疼某餅" class="signature-img">
         <div class="signature-content">
-          <span class="tag-label">最具代表性伴手禮</span>
-          <h3>疼某餅</h3>
-          <p>『疼某餅』，是我們家最具代表性的產品。起心動念其實很簡單——想做一款好吃、耐吃、乾乾淨淨、吃完不會弄得滿桌碎屑的餅。</p>
-          <p>以熟糯米粉、牛奶與天然奶油細火蒸煮，做出軟糯細緻卻不黏牙、清酥卻不易掉屑的獨特口感。</p>
+          <span class="section-eyebrow">鎮店代表作</span>
+          <h2>疼某餅</h2>
+          <p class="signature-lead">軟糯不黏牙、清酥不易掉屑的溫柔</p>
+          <p>起心動念很簡單——想做一款好吃、耐吃、乾乾淨淨，吃完不會弄得滿桌碎屑的餅。</p>
+          <p>以熟糯米粉、牛奶與天然奶油細火蒸煮，在綿密與清酥之間找到剛好的平衡。</p>
           <blockquote class="story-quote">
             有位客人吃完笑著說：<br>
             「帶回家給太太，我們就不用再忙著掃滿地餅屑。這是嘴裡的幸福，也是心裡的疼惜。」<br>
             那一句話，讓這個餅有了靈魂。
           </blockquote>
-          <p class="signature-closing">希望你也能把這份溫柔，送給心裡重要的人。 ❤️</p>
+          <p class="signature-closing">希望你也能把這份溫柔，送給心裡重要的人。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="craft">
+      <span class="section-eyebrow">經典手作與老店日常</span>
+      <div class="duo-grid">
+        <div class="duo-item">
+          <img src="images/shoutao.jpg" alt="綠州堡烘焙大真烤壽桃特寫" class="img-focus-shoutao">
+          <h3>大真烤壽桃</h3>
+          <p>細火烘焙出醇厚外皮與飽滿豆沙餡，免蒸熱、免冷凍即可品嚐最佳風味，為祝壽與慶生的經典首選。</p>
+        </div>
+        <div class="duo-item">
+          <img src="images/store.jpg" alt="綠州堡烘焙高雄三民區建興路門市">
+          <h3>二十餘載的老字號門市</h3>
+          <p>扎根三民區建興路二十餘載，獲選台灣百大伴手禮肯定，堅持原料貨真價實，讓每一位顧客買得安心。</p>
         </div>
       </div>
     </section>
 
     <section id="about">
-      <h2>品牌故事與二代傳承</h2>
-      <div class="motto-box">
-        <p class="motto">「用心做好餅是綠州堡最大的堅持」</p>
-        <p class="motto-sub">始終秉持將最好的品質呈現給顧客——這是種責任與原則。</p>
+      <div class="about-wrap">
+        <span class="section-eyebrow">1999 創立・二代傳承</span>
+        <h2>把中式漢餅的美好，延續到日常</h2>
+        <p>創立於 1999 年，綠州堡烘焙陪伴無數高雄家庭走過節慶祝壽、婚嫁喜慶與日常茶點時光。我們始終專注於「食」的本質，將最好的品質呈現給顧客。</p>
+        <p>如今由二代接棒，保留老師傅的古法手藝並融入新世代的細膩口感，讓傳統漢餅更貼近現代人的生活。</p>
       </div>
-      <p>創立於 1999 年，綠州堡烘焙深耕高雄二十餘載，是陪伴無數在地家庭節慶祝壽、婚嫁喜慶與日常茶點的老字號烘焙坊。經營理念始終專注於「食」的本質訴求，堅持原料貨真價實，讓每一位顧客都能吃得健康、買得信賴。</p>
-      <p>如今由二代接棒為顧客服務，在傳統古法傳承與創新佈局的新舊融合之下，綠州堡以更成熟、新穎且具競爭力的姿態，持續為美食饕客打造安心美味的糕餅，傳承並發揚中式漢餅文化的美好。</p>
-    </section>
-
-    <section id="features">
-      <h2>經典工藝與在地門市</h2>
-      <div class="banner-card">
-        <img src="images/shoutao.jpg" alt="綠州堡烘焙大真烤壽桃" class="banner-img">
-        <div class="banner-body">
-          <h3>大真烤壽桃</h3>
-          <p>承襲傳統祝壽文化與細火烘焙工藝，免蒸熱、免冷凍直接食用即可品嚐最佳風味；外皮香氣醇厚、內餡細緻甜潤，為神明祝壽與長輩慶生的經典首選。</p>
-        </div>
-      </div>
-      <div class="store-card">
-        <img src="images/store.jpg" alt="綠州堡烘焙高雄三民區建興路門市" class="store-img">
-        <div class="store-body">
-          <h3>二十餘載的老字號門市</h3>
-          <p>扎根高雄市三民區建興路，獲選台灣百大伴手禮肯定，遵循「用心做好餅」的原則，讓每位顧客買得安心信賴。</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="media">
-      <h2>媒體報導與最新動態</h2>
-      <p>最新產品資訊、節慶預購與門市公告，主要於官方 Facebook 粉絲專頁即時更新：</p>
-      <a href="https://www.facebook.com/baosbakery3903876/" class="link-card">
-        <div>
-          <strong>綠州堡烘焙 官方 Facebook 粉絲專頁</strong>
-          <span>查看最新產品動態、節慶禮盒消息與線上私訊洽詢</span>
-        </div>
-        <div class="link-arrow">前往 &rarr;</div>
-      </a>
-      <a href="https://www.estwedding.com/archives/8396" target="_blank" rel="noopener" class="link-card">
-        <div>
-          <strong>相關專題報導與品牌介紹</strong>
-          <span>閱讀綠州堡烘焙與大真烤壽桃的工藝故事與特色分享</span>
-        </div>
-        <div class="link-arrow">閱讀 &rarr;</div>
-      </a>
     </section>
 
     <section id="contact">
-      <h2>門市與聯絡資訊</h2>
-      <div class="contact-box">
-        <ul class="contact-list">
-          <li><strong>服務專線：</strong><a href="tel:073903876">07-390-3876</a>（點擊可直接撥打）</li>
-          <li><strong>門市地址：</strong><a href="https://maps.app.goo.gl/brA2iWapRoTcWSqUA" target="_blank" rel="noopener">高雄市三民區寶中里建興路195號（開啟地圖導航）</a></li>
-          <li><strong>產品洽詢：</strong>歡迎來電或透過上方 Facebook 粉絲專頁私訊訂購</li>
-        </ul>
+      <div class="info-grid">
+        <div class="info-block">
+          <span class="section-eyebrow">VISIT US</span>
+          <h2>門市與訂購洽詢</h2>
+          <ul class="clean-list">
+            <li><strong>服務專線</strong><a href="tel:073903876">07-390-3876</a></li>
+            <li><strong>門市地址</strong><a href="https://maps.app.goo.gl/brA2iWapRoTcWSqUA" target="_blank" rel="noopener">高雄市三民區寶中里建興路195號（開啟地圖）</a></li>
+            <li><strong>線上訂購</strong>歡迎來電或透過 Facebook 粉絲專頁私訊洽詢</li>
+          </ul>
+        </div>
+        <div class="info-block">
+          <span class="section-eyebrow">NEWS & PRESS</span>
+          <h2>最新動態與報導</h2>
+          <ul class="clean-list">
+            <li><strong>官方粉專</strong><a href="https://www.facebook.com/baosbakery3903876/">綠州堡烘焙 Facebook（節慶預購與公告）</a></li>
+            <li><strong>專題報導</strong><a href="https://www.estwedding.com/archives/8396" target="_blank" rel="noopener">品牌工藝故事與特色介紹 &rarr;</a></li>
+          </ul>
+        </div>
       </div>
     </section>
   </main>
@@ -576,7 +517,7 @@
   </div>
 
   <footer>
-    <p>&copy; 1999–2026 綠州堡烘焙 / 大真烤壽桃 / 台灣百大伴手禮. All Rights Reserved.</p>
+    <p>&copy; 1999–2026 綠州堡烘焙 / 大真烤壽桃. All Rights Reserved.</p>
   </footer>
 
 </body>
