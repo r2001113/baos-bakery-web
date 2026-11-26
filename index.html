@@ -421,7 +421,7 @@
       section { padding: 3rem 0; }
       .link-card { padding: 1.15rem 1.2rem; }
 
-      /* 手機版顯示底部單手操作列，並調整頁尾與回到頂部位置 */
+      /* 手機版顯示底部單手操作列，統一三顆按鈕色系 */
       .mobile-bottom-bar {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -437,17 +437,17 @@
       }
       .mobile-bottom-bar a {
         text-align: center;
-        padding: 0.8rem 0.25rem;
+        padding: 0.85rem 0.25rem;
         text-decoration: none;
         color: var(--primary);
-        font-size: 0.88rem;
+        font-size: 0.9rem;
         font-weight: 600;
         border-right: 1px solid var(--border);
+        transition: background 0.15s;
       }
       .mobile-bottom-bar a:last-child { border-right: none; }
-      .mobile-bottom-bar a.primary-action {
-        background: var(--accent);
-        color: #ffffff;
+      .mobile-bottom-bar a:active {
+        background: var(--surface-alt);
       }
       .back-to-top {
         bottom: 4.2rem;
@@ -539,7 +539,7 @@
     <section id="media">
       <h2>媒體報導與最新動態</h2>
       <p>最新產品資訊、節慶預購與門市公告，主要於官方 Facebook 粉絲專頁即時更新：</p>
-      <a href="https://www.facebook.com/baosbakery3903876/?locale=zh_TW" target="_blank" rel="noopener" class="link-card">
+      <a href="https://www.facebook.com/baosbakery3903876/" class="link-card">
         <div>
           <strong>綠州堡烘焙 官方 Facebook 粉絲專頁</strong>
           <span>查看最新產品動態、節慶禮盒消息與線上私訊洽詢</span>
@@ -572,7 +572,7 @@
   <div class="mobile-bottom-bar">
     <a href="tel:073903876">撥打電話</a>
     <a href="https://maps.app.goo.gl/brA2iWapRoTcWSqUA" target="_blank" rel="noopener">地圖導航</a>
-    <a href="https://www.facebook.com/baosbakery3903876/?locale=zh_TW" target="_blank" rel="noopener" class="primary-action">FB 粉專</a>
+    <a href="https://www.facebook.com/baosbakery3903876/">FB 粉專</a>
   </div>
 
   <footer>
