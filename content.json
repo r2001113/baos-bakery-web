@@ -27,10 +27,17 @@
       ]
     },
     {
-      "visible": false,
+      "visible": true,
       "category": "招牌商品",
-      "name": "黑香蕉燒餅",
-      "tag": "特色招牌"
+      "name": "疼某餅",
+      "tag": "人氣招牌、最代表性產品",
+      "price": "歡迎來電預定",
+      "description": "以熟糯米粉、牛奶與天然奶油細火蒸煮\n做出軟糯細緻卻不黏牙、清酥卻不易掉屑的口感。",
+      "images": [
+        "/images/tengmou-cake-01.jpg",
+        "/images/tengmou-cake-02.jpg",
+        "/images/tengmou-cake-03.jpg"
+      ]
     },
     {
       "visible": false,
