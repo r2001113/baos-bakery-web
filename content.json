@@ -1,6 +1,7 @@
 {
   "notice": {
     "active": true,
+    "badge": "",
     "text": "傳統手工現烤每日限量出爐，節慶禮盒與大真烤壽桃歡迎提前來電預訂。"
   },
   "hero": {
@@ -10,29 +11,36 @@
   },
   "seasonal_meta": {
     "active": true,
-    "eyebrow": "SEASONAL SELECTION",
-    "title": "節慶限定與手作禮盒"
+    "eyebrow": "HANDCRAFTED SELECTION",
+    "title": "嚴選糕點與手作禮盒"
   },
   "seasonal_products": [
     {
-      "visible": true,
+      "visible": false,
+      "category": "常態手作",
       "name": "歐式烤年糕",
-      "tag": "春節禮盒",
-      "price": "歡迎來電洽詢",
-      "description": "• 食用方式：\n   常溫下切片即可直接食用（免炊煮、蒸、烤或油炸）。 \n• 保存期限： \n   • 常溫保存：5 天\n   • 冷藏保存：14 天 \n   • 冷凍保存：60 天",
-      "image": "/images/baked-niangao-01.jpg"
+      "tag": "人氣手作",
+      "price": "",
+      "description": "",
+      "images": []
     },
     {
       "visible": false,
+      "category": "常態手作",
       "name": "黑香蕉燒餅",
       "tag": "特色招牌",
-      "image": "/images/banana-shaobing.jpg"
+      "price": "",
+      "description": "",
+      "images": []
     },
     {
       "visible": false,
+      "category": "節慶限定",
       "name": "中秋月餅",
       "tag": "節慶限定",
-      "image": "/images/mooncake.jpg"
+      "price": "",
+      "description": "",
+      "images": []
     }
   ],
   "faq_meta": {
@@ -53,6 +61,7 @@
     "phone": "07-390-3876",
     "hours": "週一至週日 09:00 - 21:00",
     "address": "高雄市三民區寶中里建興路195號",
+    "line_url": "",
     "line_label": "加入官方 LINE 線上預訂"
   }
 }
