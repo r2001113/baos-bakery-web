@@ -16,7 +16,6 @@
   <meta property="og:title" content="綠州堡烘焙｜疼某餅・大真烤壽桃・1999創立高雄老字號">
   <meta property="og:description" content="創立於1999年，用心做好餅是綠州堡最大的堅持。代表作「疼某餅」軟糯不黏牙、清酥不掉屑，把這份溫柔送給心裡重要的人。">
   <meta property="og:url" content="https://www.baos-bakery.com.tw/">
-  <!-- 社群分享升級為鎮店代表作疼某餅實拍大圖 -->
   <meta property="og:image" content="https://www.baos-bakery.com.tw/images/tengmou-cake.jpg">
 
   <!-- Google 在地商家結構化資料（LocalBusiness / Bakery Schema） -->
@@ -90,7 +89,21 @@
       color: var(--text);
       background-color: var(--bg);
       -webkit-tap-highlight-color: transparent;
+      /* 智慧型反複製：防止全站品牌文案被滑鼠反白選取 */
+      -webkit-user-select: none;
+      user-select: none;
     }
+    /* 防止產品與門市照片被長按或拖曳下載 */
+    img {
+      -webkit-touch-callout: none;
+      pointer-events: none;
+    }
+    /* 貼心放行：允許顧客反白複製門市電話、營業時間與地址 */
+    .clean-list, .clean-list a, .clean-list span {
+      -webkit-user-select: text;
+      user-select: text;
+    }
+
     h1, h2, h3, .brand-text, .motto, .story-quote {
       font-family: "Noto Serif TC", "Songti TC", "PMingLiU", Georgia, serif;
       font-weight: 400;
@@ -143,16 +156,18 @@
     }
     nav a:hover { color: var(--primary); }
 
-    /* 最新公告橫幅（標籤可自訂或留白移除） */
+    /* 最新公告橫幅（方案 A：支援智慧平衡換行防孤字） */
     .notice-banner {
       display: none;
       background: var(--surface-alt);
       border-bottom: 1px solid var(--border);
-      padding: 0.65rem 5%;
+      padding: 0.6rem 5%;
       text-align: center;
       font-size: 0.88rem;
+      line-height: 1.55;
       color: var(--primary);
       letter-spacing: 0.04em;
+      text-wrap: balance;
     }
     .notice-badge {
       display: none;
@@ -454,7 +469,7 @@
       font-weight: 300;
       color: var(--text-muted);
       line-height: 1.85;
-      white-space: pre-wrap; /* 新增這行：完整保留後台輸入的換行與縮排空白 */
+      white-space: pre-wrap;
     }
 
     /* 第三視覺：門市聯絡與報導 */
@@ -559,7 +574,13 @@
     }
 
     @media (max-width: 600px) {
-      #hero { padding: 4rem 0 3.5rem; }
+      /* 手機版公告橫幅字級與間距收斂，呈現單行俐落感 */
+      .notice-banner {
+        font-size: 0.78rem;
+        padding: 0.45rem 4%;
+        letter-spacing: 0.02em;
+      }
+      #hero { padding: 3.5rem 0 3.2rem; }
       h1 { font-size: 1.75rem; letter-spacing: 0.06em; }
       .hero-logo { width: 108px; height: 108px; }
       .hero-meta { font-size: 0.78rem; letter-spacing: 0.12em; }
@@ -690,7 +711,7 @@
       <div class="about-wrap">
         <span class="section-eyebrow">1999 創立・二代傳承</span>
         <h2>把中式漢餅的美好，延續到日常</h2>
-        <p>創立於 1999 年，綠州堡烘焙陪伴無數高雄家庭走過節慶祝壽、婚嫁喜慶與日常茶點時光。我們始終專注於「食」的本質，將最好的品質呈現給顧客。</p>
+        <p>創立於 1999 年，綠州堡烘焙陪伴無數家庭走過節慶祝壽、婚嫁喜慶與日常茶點時光。我們始終專注於「食」的本質，將最好的品質呈現給顧客。</p>
         <p>如今由二代接棒，保留老師傅的古法手藝並融入新世代的細膩口感，讓傳統漢餅更貼近現代人的生活。</p>
       </div>
     </section>
@@ -743,6 +764,23 @@
   <footer>
     <p>&copy; 1999–2026 綠州堡烘焙 / 大真烤壽桃. All Rights Reserved.</p>
   </footer>
+
+  <!-- 智慧型反複製與圖片保護腳本（聯絡區地址與電話例外放行） -->
+  <script>
+    document.addEventListener('contextmenu', function(e) {
+      if (!e.target.closest('.clean-list')) {
+        e.preventDefault();
+      }
+    });
+    document.addEventListener('keydown', function(e) {
+      if ((e.ctrlKey || e.metaKey) && ['c', 'u', 's', 'a'].includes(e.key.toLowerCase())) {
+        const selection = window.getSelection().toString();
+        if (!selection) {
+          e.preventDefault();
+        }
+      }
+    });
+  </script>
 
   <!-- 自動讀取 Pages CMS 後台產生的 content.json 資料 -->
   <script>
@@ -824,7 +862,6 @@
           document.getElementById('faq').style.display = 'block';
           document.getElementById('nav-faq').style.display = 'inline-block';
 
-          // 動態寫入 FAQPage Schema 供 Google 搜尋引擎收錄
           const faqSchema = {
             "@context": "https://schema.org",
             "@type": "FAQPage",
@@ -861,7 +898,6 @@
           if (data.store.image) {
             document.getElementById('cms-store-img').src = data.store.image.replace(/^\//, '');
           }
-          // 若未來在後台填入 LINE 網址，自動開啟聯絡清單與手機底部快捷列按鈕
           if (data.store.line_url && data.store.line_url.trim() !== '') {
             const lineUrl = data.store.line_url.trim();
             const lineLink = document.getElementById('cms-line-link');
