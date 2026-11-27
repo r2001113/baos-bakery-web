@@ -3,13 +3,13 @@ media:
   output: /images
 
 content:
-  - name: notice_bar
-    label: "① 頂部最新公告（選填）"
+  - name: site_content
+    label: 綠州堡官網內容管理（全站單頁總管）
     type: file
     path: content.json
     fields:
       - name: notice
-        label: 官網最上方橫幅設定
+        label: "① 頂部最新公告（選填）"
         type: object
         fields:
           - name: active
@@ -17,19 +17,14 @@ content:
             type: boolean
             default: true
           - name: badge
-            label: 前置標籤文字（可自由修改如：節慶預購、公休通知；若留白則不顯示標籤）
+            label: 前置標籤文字（如：節慶預購、公休通知；留白則不顯示標籤）
             type: string
           - name: text
             label: 公告內容（例如：中秋禮盒開放預購中，歡迎來電 07-390-3876）
             type: string
 
-  - name: hero_section
-    label: "② 首頁封面區（主視覺）"
-    type: file
-    path: content.json
-    fields:
       - name: hero
-        label: 首頁最上方封面文字
+        label: "② 首頁封面區（主視覺文字）"
         type: object
         fields:
           - name: subtitle
@@ -42,13 +37,8 @@ content:
             label: 品牌核心標語（預設：「用心做好餅，是綠州堡最大的堅持。」）
             type: string
 
-  - name: seasonal_section
-    label: "③ 節慶限定與季節商品（支援預先排版・一鍵上下架）"
-    type: file
-    path: content.json
-    fields:
       - name: seasonal_meta
-        label: 節慶專區整體設定
+        label: "③-1 節慶限定專區 — 標題與總開關"
         type: object
         fields:
           - name: active
@@ -59,15 +49,16 @@ content:
             label: 英文小標（預設：SEASONAL SELECTION）
             type: string
           - name: title
-            label: 區塊主標題（可隨節慶修改，如：中秋限定禮盒、春節伴手禮精選）
+            label: 區塊主標題（如：中秋限定禮盒、春節伴手禮精選）
             type: string
+
       - name: seasonal_products
-        label: 商品清單（點「+ Add an item」新增商品，可先關閉作為草稿預排）
+        label: "③-2 節慶限定專區 — 商品清單（支援草稿預排・一鍵上下架）"
         type: object
         list: true
         fields:
           - name: visible
-            label: 上架狀態（綠色開啟 = 官網公開顯示 ／ 灰色關閉 = 暫不開放預排中）
+            label: 上架狀態（綠色開啟 = 公開顯示 ／ 灰色關閉 = 暫不開放預排中）
             type: boolean
             default: true
           - name: name
@@ -86,13 +77,8 @@ content:
             label: 商品實拍照片
             type: image
 
-  - name: faq_section
-    label: "④ 常見訂購問答 FAQ（可自由增減與開關）"
-    type: file
-    path: content.json
-    fields:
       - name: faq_meta
-        label: 常見問答區塊設定
+        label: "④-1 常見訂購問答 FAQ — 標題與總開關"
         type: object
         fields:
           - name: active
@@ -102,8 +88,9 @@ content:
           - name: title
             label: 區塊標題（預設：常見訂購與保存問答）
             type: string
+
       - name: faqs
-        label: 問答清單（點「+ Add an item」新增問題）
+        label: "④-2 常見訂購問答 FAQ — 問答清單（可自由增減）"
         type: object
         list: true
         fields:
@@ -118,13 +105,8 @@ content:
             label: 詳細解答說明
             type: text
 
-  - name: store_section
-    label: "⑤ 建興路本店與聯絡資訊（含未來 LINE 預留）"
-    type: file
-    path: content.json
-    fields:
       - name: store
-        label: 門市展示與聯絡資料
+        label: "⑤ 建興路本店與聯絡資訊（含未來 LINE 預留）"
         type: object
         fields:
           - name: name
@@ -146,7 +128,7 @@ content:
             label: 門市地址
             type: string
           - name: line_url
-            label: 【未來擴充】LINE 官方帳號連結（例如 https://lin.ee/xxxx；留白則暫不顯示）
+            label: 【未來擴充】LINE 官方帳號連結（留白則暫不顯示）
             type: string
           - name: line_label
             label: 【未來擴充】LINE 顯示文字（例如：加入官方 LINE 線上預訂）
