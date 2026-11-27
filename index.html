@@ -96,7 +96,7 @@
     }
     nav a:hover { color: var(--primary); }
 
-    /* 最新公告橫幅（由後台開關控制） */
+    /* 最新公告橫幅（標籤可自訂或留白移除） */
     .notice-banner {
       display: none;
       background: var(--surface-alt);
@@ -108,7 +108,7 @@
       letter-spacing: 0.04em;
     }
     .notice-badge {
-      display: inline-block;
+      display: none;
       color: var(--accent-hover);
       font-weight: 500;
       margin-right: 0.6rem;
@@ -507,9 +507,9 @@
     </nav>
   </header>
 
-  <!-- 後台控制：最新公告橫幅 -->
+  <!-- 後台控制：最新公告橫幅（前置標籤可自由修改或留白不顯示） -->
   <div class="notice-banner" id="cms-notice-banner">
-    <span class="notice-badge">門市公告</span>
+    <span class="notice-badge" id="cms-notice-badge"></span>
     <span id="cms-notice-text"></span>
   </div>
 
@@ -544,11 +544,11 @@
       </div>
     </section>
 
-    <!-- 後台控制：節慶限定 / 主打商品（可自由新增或刪除如中秋禮盒） -->
+    <!-- 後台控制：節慶限定 / 主打商品（僅顯示設為「上架」的商品） -->
     <section id="seasonal">
       <div class="seasonal-header">
-        <span class="section-eyebrow">SEASONAL SELECTION</span>
-        <h2>節慶限定與手作禮盒</h2>
+        <span class="section-eyebrow" id="cms-seasonal-eyebrow">SEASONAL SELECTION</span>
+        <h2 id="cms-seasonal-title">節慶限定與手作禮盒</h2>
       </div>
       <div class="seasonal-list" id="cms-seasonal-list"></div>
     </section>
@@ -564,7 +564,7 @@
         <div class="duo-item">
           <img src="images/store.jpg" alt="綠州堡烘焙高雄三民區建興路門市" id="cms-store-img">
           <h3 id="cms-store-name">建興路本店</h3>
-          <p>扎根三民區建興路二十餘載，獲選台灣百大伴手禮肯定，堅持原料貨真價實，讓每一位顧客買得安心。</p>
+          <p id="cms-store-desc">扎根三民區建興路二十餘載，獲選台灣百大伴手禮肯定，堅持原料貨真價實，讓每一位顧客買得安心。</p>
         </div>
       </div>
     </section>
@@ -622,32 +622,47 @@
         if (!res.ok) return;
         const data = await res.json();
 
-        // 1. 最新公告橫幅
-        if (data.notice && data.notice.active && data.notice.text) {
+        // 1. 最新公告橫幅（標籤可自由修改，留白則完全隱藏標籤）
+        if (data.notice && data.notice.active && data.notice.text && data.notice.text.trim() !== '') {
+          const badgeEl = document.getElementById('cms-notice-badge');
+          if (data.notice.badge && data.notice.badge.trim() !== '') {
+            badgeEl.textContent = data.notice.badge.trim();
+            badgeEl.style.display = 'inline-block';
+          } else {
+            badgeEl.style.display = 'none';
+          }
           document.getElementById('cms-notice-text').textContent = data.notice.text;
           document.getElementById('cms-notice-banner').style.display = 'block';
         }
 
-        // 2. 首頁主視覺文字（若後台有自訂則更新）
+        // 2. 首頁封面文字
         if (data.hero) {
           if (data.hero.subtitle) document.getElementById('cms-hero-meta').textContent = data.hero.subtitle;
           if (data.hero.title) document.getElementById('cms-hero-title').textContent = data.hero.title;
           if (data.hero.description) document.getElementById('cms-hero-motto').textContent = data.hero.description;
         }
 
-        // 3. 節慶限定 / 主打商品動態渲染（如中秋禮盒）
-        const products = Array.isArray(data.seasonal_products) ? data.seasonal_products : [];
-        if (products.length > 0) {
+        // 3. 節慶限定 / 主打商品（過濾出上架狀態 visible !== false 的商品）
+        const metaActive = data.seasonal_meta ? (data.seasonal_meta.active !== false) : true;
+        if (data.seasonal_meta) {
+          if (data.seasonal_meta.eyebrow) document.getElementById('cms-seasonal-eyebrow').textContent = data.seasonal_meta.eyebrow;
+          if (data.seasonal_meta.title) document.getElementById('cms-seasonal-title').textContent = data.seasonal_meta.title;
+        }
+
+        const allProducts = Array.isArray(data.seasonal_products) ? data.seasonal_products : [];
+        const visibleProducts = allProducts.filter(item => item && item.visible !== false);
+
+        if (metaActive && visibleProducts.length > 0) {
           const listEl = document.getElementById('cms-seasonal-list');
-          listEl.innerHTML = products.map(item => {
+          listEl.innerHTML = visibleProducts.map(item => {
             const imgSrc = item.image ? item.image.replace(/^\//, '') : 'images/shoutao.jpg';
             return `
               <div class="seasonal-item">
                 <img src="${imgSrc}" alt="${item.name || '綠州堡節慶禮盒'}">
                 <div class="seasonal-info">
-                  ${item.tag ? `<span class="seasonal-tag">${item.tag}</span>` : ''}
+                  ${item.tag && item.tag.trim() !== '' ? `<span class="seasonal-tag">${item.tag}</span>` : ''}
                   <h3>${item.name || ''}</h3>
-                  ${item.price ? `<div class="seasonal-price">${item.price}</div>` : ''}
+                  ${item.price && item.price.trim() !== '' ? `<div class="seasonal-price">${item.price}</div>` : ''}
                   <p>${item.description || ''}</p>
                 </div>
               </div>
@@ -660,6 +675,7 @@
         // 4. 門市資訊同步
         if (data.store) {
           if (data.store.name) document.getElementById('cms-store-name').textContent = data.store.name;
+          if (data.store.description) document.getElementById('cms-store-desc').textContent = data.store.description;
           if (data.store.hours) document.getElementById('cms-store-hours').textContent = data.store.hours;
           if (data.store.phone) {
             const phoneEl = document.getElementById('cms-store-phone');
