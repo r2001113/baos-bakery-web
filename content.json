@@ -1,24 +1,13 @@
 {
-  "seasonal_meta": {
+  "faq_meta": {
     "active": true,
-    "eyebrow": "SEASONAL SELECTION",
-    "title": "節慶限定與手作禮盒"
+    "title": "Q&A"
   },
-  "seasonal_products": [
+  "faqs": [
     {
       "visible": true,
-      "name": "年節限定・歐式烤年糕",
-      "tag": "春節禮盒",
-      "price": "歡迎來電洽詢",
-      "description": "結合傳統年糕與烘焙蛋糕技術，以糯米加入雞蛋、牛奶、發酵奶油烘焙，口感 Q 軟帶有糯米粉與濃郁奶香；不需炊蒸炸，可直接切片食用。",
-      "image": "/images/baked-niangao-01.jpg"
-    },
-    {
-      "visible": false,
-      "name": "中秋限定・手工蛋黃酥禮盒",
-      "tag": "節慶預購",
-      "price": "6入 / 12入 禮盒裝（歡迎來電洽詢）",
-      "description": "嚴選紅土鹹蛋黃搭配綿密低糖烏豆沙，層層酥皮金黃香脆，手工現烤限量供應。"
+      "question": "歐式烤年糕保存期限",
+      "answer": "• 食用方式：常溫下切片即可直接食用（免炊煮、蒸、烤或油炸）。\n• 保存期限：\n\t• 常溫保存：5 天\n\t• 冷藏保存：14 天\n\t• 冷凍保存：60 天"
     }
   ]
 }
