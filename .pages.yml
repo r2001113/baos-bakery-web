@@ -38,7 +38,7 @@ content:
             type: string
 
       - name: seasonal_meta
-        label: "③-1 節慶限定專區 — 標題與總開關"
+        label: "③-1 嚴選糕點專區 — 標題與總開關"
         type: object
         fields:
           - name: active
@@ -46,14 +46,14 @@ content:
             type: boolean
             default: true
           - name: eyebrow
-            label: 英文小標（預設：SEASONAL SELECTION）
+            label: 英文小標（預設：HANDCRAFTED SELECTION）
             type: string
           - name: title
-            label: 區塊主標題（如：中秋限定禮盒、春節伴手禮精選）
+            label: 區塊主標題（預設：嚴選糕點與手作禮盒）
             type: string
 
       - name: seasonal_products
-        label: "③-2 節慶限定專區 — 商品清單（支援草稿預排・一鍵上下架）"
+        label: "③-2 嚴選糕點專區 — 商品清單（支援分類篩選・1～3張多圖・草稿預排）"
         type: object
         list: true
         fields:
@@ -61,21 +61,31 @@ content:
             label: 上架狀態（綠色開啟 = 公開顯示 ／ 灰色關閉 = 暫不開放預排中）
             type: boolean
             default: true
+          - name: category
+            label: 系列分類（用於前台分類標籤切換）
+            type: select
+            default: 常態手作
+            options:
+              values:
+                - 常態手作
+                - 節慶限定
+                - 伴手禮盒
           - name: name
-            label: 商品名稱（如：招牌蛋黃酥禮盒）
+            label: 商品名稱（如：歐式烤年糕、黑香蕉燒餅、中秋月餅）
             type: string
           - name: tag
-            label: 特色標籤（如：中秋限定、限量手作；留白則不顯示）
+            label: 特色小標（如：每日限量、人氣招牌、中秋限定；留白則不顯示）
             type: string
           - name: price
-            label: 規格與價格說明（如：8入 / 12入 禮盒裝，歡迎來電預訂）
+            label: 規格與價格說明（如：單入 / 禮盒裝，歡迎來電預訂）
             type: string
           - name: description
-            label: 商品口感與特色介紹
+            label: 商品口感與特色介紹（支援 Enter 換行）
             type: text
-          - name: image
-            label: 商品實拍照片
+          - name: images
+            label: 商品照片集（可上傳或選取 1～3 張，第 1 張為主圖，支援拖曳調整順序）
             type: image
+            list: true
 
       - name: faq_meta
         label: "④-1 常見訂購問答 FAQ — 標題與總開關"
@@ -102,7 +112,7 @@ content:
             label: 顧客常問問題
             type: string
           - name: answer
-            label: 詳細解答說明
+            label: 詳細解答說明（支援 Enter 換行與空白縮排）
             type: text
 
       - name: store
