@@ -1,4 +1,45 @@
 {
+  "notice": {
+    "active": true,
+    "badge": "",
+    "text": "傳統手工現烤每日限量出爐，節慶禮盒與大真烤壽桃歡迎提前來電預訂。"
+  },
+  "hero": {
+    "subtitle": "SINCE 1999・高雄老字號・台灣百大伴手禮",
+    "title": "綠州堡烘焙・大真烤壽桃",
+    "description": "「用心做好餅，是綠州堡最大的堅持。」"
+  },
+  "seasonal_meta": {
+    "active": true,
+    "eyebrow": "SEASONAL SELECTION",
+    "title": "節慶限定與手作禮盒"
+  },
+  "seasonal_products": [
+    {
+      "visible": false,
+      "name": "歐式烤年糕",
+      "tag": "人氣手作",
+      "price": "",
+      "description": "",
+      "image": "/images/baked-niangao.jpg"
+    },
+    {
+      "visible": false,
+      "name": "黑香蕉燒餅",
+      "tag": "特色招牌",
+      "price": "",
+      "description": "",
+      "image": "/images/banana-shaobing.jpg"
+    },
+    {
+      "visible": false,
+      "name": "中秋月餅",
+      "tag": "節慶限定",
+      "price": "",
+      "description": "",
+      "image": "/images/mooncake.jpg"
+    }
+  ],
   "faq_meta": {
     "active": true,
     "title": "常見訂購與保存問答"
@@ -7,7 +48,17 @@
     {
       "visible": true,
       "question": "歐式烤年糕保存期限",
-      "answer": "• 食用方式：\n       常溫下切片即可直接食用（免炊煮、蒸、烤或油炸）。\n• 保存期限：\n\t• 常溫保存：5 天\n\t• 冷藏保存：14 天\n\t• 冷凍保存：60 天"
+      "answer": "• 食用方式：常溫下切片即可直接食用（免炊煮、蒸、烤或油炸）。\n• 保存期限：\n  • 常溫保存：5 天\n  • 冷藏保存：14 天\n  • 冷凍保存：60 天"
     }
-  ]
+  ],
+  "store": {
+    "name": "建興路本店",
+    "description": "扎根三民區建興路二十餘載，獲選台灣百大伴手禮肯定，堅持原料貨真價實，讓每一位顧客買得安心。",
+    "image": "/images/store.jpg",
+    "phone": "07-390-3876",
+    "hours": "週一至週日 09:00 - 21:00",
+    "address": "高雄市三民區寶中里建興路195號",
+    "line_url": "",
+    "line_label": "加入官方 LINE 線上預訂"
+  }
 }
