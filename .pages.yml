@@ -86,8 +86,40 @@ content:
             label: 商品實拍照片
             type: image
 
+  - name: faq_section
+    label: "④ 常見訂購問答 FAQ（可自由增減與開關）"
+    type: file
+    path: content.json
+    fields:
+      - name: faq_meta
+        label: 常見問答區塊設定
+        type: object
+        fields:
+          - name: active
+            label: 總開關：是否顯示常見訂購問答區塊
+            type: boolean
+            default: true
+          - name: title
+            label: 區塊標題（預設：常見訂購與保存問答）
+            type: string
+      - name: faqs
+        label: 問答清單（點「+ Add an item」新增問題）
+        type: object
+        list: true
+        fields:
+          - name: visible
+            label: 公開顯示（關閉則暫時隱藏該題）
+            type: boolean
+            default: true
+          - name: question
+            label: 顧客常問問題
+            type: string
+          - name: answer
+            label: 詳細解答說明
+            type: text
+
   - name: store_section
-    label: "④ 建興路本店與聯絡資訊"
+    label: "⑤ 建興路本店與聯絡資訊（含未來 LINE 預留）"
     type: file
     path: content.json
     fields:
@@ -112,4 +144,10 @@ content:
             type: string
           - name: address
             label: 門市地址
+            type: string
+          - name: line_url
+            label: 【未來擴充】LINE 官方帳號連結（例如 https://lin.ee/xxxx；留白則暫不顯示）
+            type: string
+          - name: line_label
+            label: 【未來擴充】LINE 顯示文字（例如：加入官方 LINE 線上預訂）
             type: string
