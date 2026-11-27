@@ -1,19 +1,35 @@
 {
   "notice": {
     "active": true,
+    "badge": "",
     "text": "傳統手工現烤每日限量出爐，節慶禮盒與大真烤壽桃歡迎提前來電預訂。"
   },
   "hero": {
-    "subtitle": "創立於 1999 年・高雄在地老字號",
+    "subtitle": "SINCE 1999・高雄老字號・台灣百大伴手禮",
     "title": "綠州堡烘焙・大真烤壽桃",
-    "description": "二十餘年堅持手工揉製與慢火烘焙，從祝壽必備的大真烤壽桃到承載心意的傳統糕餅，用最實在的溫度陪伴高雄人的每個重要時刻。",
-    "image": "/images/shoutao.jpg"
+    "description": "「用心做好餅，是綠州堡最大的堅持。」"
   },
+  "seasonal_meta": {
+    "active": true,
+    "eyebrow": "SEASONAL SELECTION",
+    "title": "節慶限定與手作禮盒"
+  },
+  "seasonal_products": [
+    {
+      "visible": false,
+      "name": "中秋限定・手工蛋黃酥禮盒",
+      "tag": "節慶預購",
+      "price": "6入 / 12入 禮盒裝（歡迎來電洽詢）",
+      "description": "嚴選紅土鹹蛋黃搭配綿密低糖烏豆沙，層層酥皮金黃香脆，手工現烤限量供應。",
+      "image": "/images/shoutao.jpg"
+    }
+  ],
   "store": {
     "name": "建興路本店",
-    "hours": "週一至週日 09:00 - 21:00",
+    "description": "扎根三民區建興路二十餘載，獲選台灣百大伴手禮肯定，堅持原料貨真價實，讓每一位顧客買得安心。",
+    "image": "/images/store.jpg",
     "phone": "07-390-3876",
-    "address": "高雄市三民區建興路195號",
-    "image": "/images/store.jpg"
+    "hours": "週一至週日 09:00 - 21:00",
+    "address": "高雄市三民區寶中里建興路195號"
   }
 }
