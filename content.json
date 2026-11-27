@@ -15,7 +15,7 @@
   },
   "seasonal_products": [
     {
-      "visible": false,
+      "visible": true,
       "category": "節慶限定",
       "name": "歐式烤年糕",
       "tag": "春節禮盒",
