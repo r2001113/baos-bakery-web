@@ -3,77 +3,113 @@ media:
   output: /images
 
 content:
-  - name: site_content
-    label: 綠州堡官網內容管理
+  - name: notice_bar
+    label: "① 頂部最新公告（選填）"
     type: file
     path: content.json
     fields:
       - name: notice
-        label: 最新公告（如年節公休、節慶預購提醒）
+        label: 官網最上方橫幅設定
         type: object
         fields:
           - name: active
-            label: 是否顯示公告橫幅
+            label: 總開關：是否顯示頂部公告橫幅
             type: boolean
             default: true
+          - name: badge
+            label: 前置標籤文字（可自由修改如：節慶預購、公休通知；若留白則不顯示標籤）
+            type: string
           - name: text
-            label: 公告內容文字
+            label: 公告內容（例如：中秋禮盒開放預購中，歡迎來電 07-390-3876）
             type: string
 
+  - name: hero_section
+    label: "② 首頁封面區（主視覺）"
+    type: file
+    path: content.json
+    fields:
       - name: hero
-        label: 首頁主視覺文字與照片
+        label: 首頁最上方封面文字
         type: object
         fields:
           - name: subtitle
-            label: 品牌副標（如：1999年創立・高雄在地老字號）
+            label: 頂部小標（預設：SINCE 1999・高雄老字號・台灣百大伴手禮）
             type: string
           - name: title
-            label: 主標題
+            label: 品牌主標題（預設：綠州堡烘焙・大真烤壽桃）
             type: string
           - name: description
-            label: 品牌簡介段落
-            type: text
-          - name: image
-            label: 主視覺照片
-            type: image
+            label: 品牌核心標語（預設：「用心做好餅，是綠州堡最大的堅持。」）
+            type: string
 
+  - name: seasonal_section
+    label: "③ 節慶限定與季節商品（支援預先排版・一鍵上下架）"
+    type: file
+    path: content.json
+    fields:
+      - name: seasonal_meta
+        label: 節慶專區整體設定
+        type: object
+        fields:
+          - name: active
+            label: 專區總開關（關閉時整區隱藏；開啟時僅顯示下方設為「上架」的商品）
+            type: boolean
+            default: true
+          - name: eyebrow
+            label: 英文小標（預設：SEASONAL SELECTION）
+            type: string
+          - name: title
+            label: 區塊主標題（可隨節慶修改，如：中秋限定禮盒、春節伴手禮精選）
+            type: string
       - name: seasonal_products
-        label: 節慶限定 / 主打商品（可自由新增或刪除如中秋禮盒）
+        label: 商品清單（點「+ Add an item」新增商品，可先關閉作為草稿預排）
         type: object
         list: true
         fields:
+          - name: visible
+            label: 上架狀態（綠色開啟 = 官網公開顯示 ／ 灰色關閉 = 暫不開放預排中）
+            type: boolean
+            default: true
           - name: name
             label: 商品名稱（如：招牌蛋黃酥禮盒）
             type: string
           - name: tag
-            label: 標籤（如：中秋限定、人氣招牌）
+            label: 特色標籤（如：中秋限定、限量手作；留白則不顯示）
             type: string
           - name: price
-            label: 價格或規格說明（如：8入 / 盒，需提前預訂）
+            label: 規格與價格說明（如：8入 / 12入 禮盒裝，歡迎來電預訂）
             type: string
           - name: description
-            label: 商品特色介紹
+            label: 商品口感與特色介紹
             type: text
           - name: image
             label: 商品實拍照片
             type: image
 
+  - name: store_section
+    label: "④ 建興路本店與聯絡資訊"
+    type: file
+    path: content.json
+    fields:
       - name: store
-        label: 門市資訊
+        label: 門市展示與聯絡資料
         type: object
         fields:
           - name: name
-            label: 門市標題
+            label: 門市標題（預設：建興路本店）
+            type: string
+          - name: description
+            label: 門市簡介段落
+            type: text
+          - name: image
+            label: 門市環境照片
+            type: image
+          - name: phone
+            label: 服務專線
             type: string
           - name: hours
             label: 營業時間
             type: string
-          - name: phone
-            label: 聯絡電話
-            type: string
           - name: address
             label: 門市地址
             type: string
-          - name: image
-            label: 門市環境或產品合照
-            type: image
