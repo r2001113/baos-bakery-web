@@ -34,6 +34,12 @@
     },
     {
       "visible": false,
+      "category": "伴手禮盒",
+      "name": "黑香蕉燒餅",
+      "tag": "特色招牌"
+    },
+    {
+      "visible": false,
       "category": "節慶限定",
       "name": "中秋月餅",
       "tag": "節慶限定"
