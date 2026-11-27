@@ -1,0 +1,79 @@
+media:
+  input: images
+  output: /images
+
+content:
+  - name: site_content
+    label: 綠州堡官網內容管理
+    type: file
+    path: content.json
+    fields:
+      - name: notice
+        label: 最新公告（如年節公休、節慶預購提醒）
+        type: object
+        fields:
+          - name: active
+            label: 是否顯示公告橫幅
+            type: boolean
+            default: true
+          - name: text
+            label: 公告內容文字
+            type: string
+
+      - name: hero
+        label: 首頁主視覺文字與照片
+        type: object
+        fields:
+          - name: subtitle
+            label: 品牌副標（如：1999年創立・高雄在地老字號）
+            type: string
+          - name: title
+            label: 主標題
+            type: string
+          - name: description
+            label: 品牌簡介段落
+            type: text
+          - name: image
+            label: 主視覺照片
+            type: image
+
+      - name: seasonal_products
+        label: 節慶限定 / 主打商品（可自由新增或刪除如中秋禮盒）
+        type: object
+        list: true
+        fields:
+          - name: name
+            label: 商品名稱（如：招牌蛋黃酥禮盒）
+            type: string
+          - name: tag
+            label: 標籤（如：中秋限定、人氣招牌）
+            type: string
+          - name: price
+            label: 價格或規格說明（如：8入 / 盒，需提前預訂）
+            type: string
+          - name: description
+            label: 商品特色介紹
+            type: text
+          - name: image
+            label: 商品實拍照片
+            type: image
+
+      - name: store
+        label: 門市資訊
+        type: object
+        fields:
+          - name: name
+            label: 門市標題
+            type: string
+          - name: hours
+            label: 營業時間
+            type: string
+          - name: phone
+            label: 聯絡電話
+            type: string
+          - name: address
+            label: 門市地址
+            type: string
+          - name: image
+            label: 門市環境或產品合照
+            type: image
