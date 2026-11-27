@@ -9,15 +9,6 @@
     "description": "二十餘年堅持手工揉製與慢火烘焙，從祝壽必備的大真烤壽桃到承載心意的傳統糕餅，用最實在的溫度陪伴高雄人的每個重要時刻。",
     "image": "/images/shoutao.jpg"
   },
-  "seasonal_products": [
-    {
-      "name": "中秋限定・手工蛋黃酥禮盒",
-      "tag": "節慶預購",
-      "price": "6入 / 12入 禮盒裝（歡迎來電洽詢）",
-      "description": "嚴選紅土鹹蛋黃搭配綿密低糖烏豆沙，層層酥皮金黃香脆，手工現烤限量供應。",
-      "image": "/images/shoutao.jpg"
-    }
-  ],
   "store": {
     "name": "建興路本店",
     "hours": "週一至週日 09:00 - 21:00",
