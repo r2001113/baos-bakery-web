@@ -62,8 +62,8 @@ content:
             type: boolean
             default: true
           - name: category
-            label: 系列分類（可下拉選取，或直接打字輸入新分類名稱後按 Enter）
-            type: select
+            label: 系列分類（可直接輸入 4 字分類名稱，如：常態手作、節慶限定、伴手禮盒、經典熱銷）
+            type: string
             default: 常態手作
             options:
               creatable: true
