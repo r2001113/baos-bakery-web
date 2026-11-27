@@ -83,7 +83,7 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html {
       scroll-behavior: smooth;
-      overflow-x: hidden;
+      overflow-x: clip;
       max-width: 100%;
     }
     body {
@@ -92,7 +92,7 @@
       line-height: 1.9;
       color: var(--text);
       background-color: var(--bg);
-      overflow-x: hidden;
+      overflow-x: clip;
       max-width: 100%;
       -webkit-tap-highlight-color: transparent;
       /* 智慧型反複製：防止全站品牌文案被滑鼠反白選取 */
@@ -115,10 +115,9 @@
       font-weight: 400;
     }
 
-    /* 頂部極簡導覽列（支援滾動時浮現微陰影） */
+    /* 頂部極簡導覽列（支援滾動時浮現微陰影與電腦版置頂鎖定） */
     header {
       width: 100%;
-      max-width: 100vw;
       border-bottom: 1px solid rgba(230, 218, 203, 0.7);
       padding: 0.9rem 5%;
       display: flex;
@@ -286,17 +285,36 @@
       display: block;
     }
 
-    /* 第二視覺：鎮店代表作「疼某餅」 */
+    /* 雙核心招牌商品：鎮店代表作「疼某餅」與經典手作「大真烤壽桃」 */
     .signature-layout {
       display: grid;
       grid-template-columns: 1fr 1.1fr;
       gap: 3.25rem;
       align-items: center;
     }
+    /* 電腦版第二主角（大真烤壽桃）採用右圖左文，與上方疼某餅形成左右對稱呼應 */
+    .signature-layout.is-reversed {
+      grid-template-columns: 1.1fr 1fr;
+    }
+    .signature-layout.is-reversed .signature-media {
+      order: 2;
+    }
+    .signature-layout.is-reversed .signature-content {
+      order: 1;
+    }
     .signature-img {
       width: 100%;
       aspect-ratio: 4 / 5;
       object-fit: cover;
+      border-radius: 12px;
+      display: block;
+      box-shadow: 0 10px 28px rgba(74, 46, 27, 0.08);
+    }
+    .shoutao-featured-img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      object-position: 78% center;
       border-radius: 12px;
       display: block;
       box-shadow: 0 10px 28px rgba(74, 46, 27, 0.08);
@@ -331,6 +349,28 @@
       font-size: 0.95rem;
       color: var(--text-muted);
       margin-bottom: 0;
+    }
+    .feature-highlights {
+      list-style: none;
+      margin-top: 1.35rem;
+      padding-top: 1.15rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+    .feature-highlights li {
+      font-size: 0.92rem;
+      font-weight: 300;
+      color: var(--text-muted);
+      padding-left: 1.1rem;
+      position: relative;
+    }
+    .feature-highlights li::before {
+      content: "•";
+      color: var(--accent);
+      position: absolute;
+      left: 0;
     }
 
     /* 嚴選糕點與禮盒（分類篩選 ＋ 1～3張多圖畫廊 ＋ 電腦左右交錯 ＋ 明確分隔線） */
@@ -397,7 +437,7 @@
       padding-bottom: 0;
       border-bottom: none;
     }
-    /* 電腦版偶數項自動左右交錯（右圖左文），增加視覺節奏 */
+    /* 電腦版偶數項自動左右交錯（右圖左文） */
     .seasonal-item.is-reversed {
       grid-template-columns: 1.1fr 1fr;
     }
@@ -511,43 +551,10 @@
       white-space: pre-wrap;
     }
 
-    /* 經典工藝與老字號門市 */
-    .duo-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 2.75rem;
-      margin-top: 1.25rem;
-    }
-    .duo-item img {
-      width: 100%;
-      aspect-ratio: 4 / 3;
-      object-fit: cover;
-      border-radius: 10px;
-      display: block;
-      margin-bottom: 1.35rem;
-      box-shadow: 0 8px 22px rgba(74, 46, 27, 0.07);
-    }
-    .img-focus-shoutao {
-      object-position: 78% center;
-    }
-    .duo-item h3 {
-      font-size: 1.4rem;
-      color: var(--primary);
-      letter-spacing: 0.06em;
-      margin-bottom: 0.65rem;
-    }
-    .duo-item p {
-      font-size: 0.95rem;
-      font-weight: 300;
-      color: var(--text-muted);
-      margin-bottom: 0;
-      white-space: pre-wrap;
-    }
-
-    /* 品牌傳承 */
+    /* 品牌傳承與建興路本店（完整保留 CMS 後台對應） */
     .about-wrap {
-      max-width: 640px;
-      margin: 0 auto;
+      max-width: 660px;
+      margin: 0 auto 3.5rem;
       text-align: center;
     }
     .about-wrap h2 {
@@ -563,6 +570,36 @@
       margin-bottom: 1.25rem;
     }
     .about-wrap p:last-child { margin-bottom: 0; }
+
+    .store-showcase {
+      display: grid;
+      grid-template-columns: 1.05fr 1fr;
+      gap: 2.75rem;
+      align-items: center;
+      padding-top: 3rem;
+      border-top: 1px solid var(--border);
+    }
+    .store-showcase img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      border-radius: 10px;
+      display: block;
+      box-shadow: 0 8px 22px rgba(74, 46, 27, 0.07);
+    }
+    .store-showcase h3 {
+      font-size: 1.45rem;
+      color: var(--primary);
+      letter-spacing: 0.06em;
+      margin-bottom: 0.75rem;
+    }
+    .store-showcase p {
+      font-size: 0.96rem;
+      font-weight: 300;
+      color: var(--text-muted);
+      white-space: pre-wrap;
+      margin-bottom: 0;
+    }
 
     /* 常見訂購問答 FAQ（極簡手風琴折疊設計，去卡片化） */
     #faq {
@@ -627,7 +664,7 @@
       white-space: pre-wrap;
     }
 
-    /* 第三視覺：門市聯絡與報導 */
+    /* 門市聯絡與報導 */
     .info-grid {
       display: grid;
       grid-template-columns: 1.1fr 0.9fr;
@@ -726,11 +763,15 @@
         padding: 0.3rem 0.1rem;
       }
       section { padding: 4rem 0; scroll-margin-top: 96px; }
-      .signature-layout, .duo-grid, .info-grid {
+      .signature-layout, .signature-layout.is-reversed, .store-showcase, .info-grid {
         grid-template-columns: 1fr;
-        gap: 1.85rem;
+        gap: 1.5rem;
       }
-      /* 手機版商品列表：收緊「同款商品的圖與文」距離，拉開「不同商品之間的分隔線與留白」 */
+      /* 手機版雙招牌與商品列表統一恢復「上圖下文」 */
+      .signature-layout.is-reversed .signature-media { order: 1; }
+      .signature-layout.is-reversed .signature-content { order: 2; }
+      .signature-img { aspect-ratio: 4 / 3; }
+
       .seasonal-list {
         gap: 2.75rem;
       }
@@ -742,10 +783,8 @@
       .seasonal-item:last-child {
         padding-bottom: 0;
       }
-      /* 手機版統一恢復為「上圖下文」，取消左右交錯 */
       .seasonal-item.is-reversed .product-gallery { order: 1; }
       .seasonal-item.is-reversed .seasonal-info { order: 2; }
-      .signature-img { aspect-ratio: 4 / 3; }
     }
 
     /* 針對 iPhone 等窄螢幕手機進一步收斂導覽列字距，確保 6 個選單 100% 容納不溢出 */
@@ -764,7 +803,6 @@
     }
 
     @media (max-width: 600px) {
-      /* 手機版公告橫幅字級與間距收斂，呈現單行俐落感 */
       .notice-banner {
         font-size: 0.78rem;
         padding: 0.45rem 4%;
@@ -777,8 +815,9 @@
       .hero-motto { font-size: 0.98rem; margin-bottom: 2.25rem; }
       .signature-content h2 { font-size: 1.75rem; }
       .seasonal-header { margin-bottom: 2rem; }
-      .about-wrap { text-align: left; }
+      .about-wrap { text-align: left; margin-bottom: 2.5rem; }
       .about-wrap h2 { font-size: 1.5rem; }
+      .store-showcase { padding-top: 2.25rem; }
       .faq-header { text-align: left; }
 
       .mobile-bottom-bar {
@@ -828,8 +867,8 @@
     </a>
     <nav id="main-nav">
       <a href="#signature">疼某餅</a>
+      <a href="#shoutao">大真烤壽桃</a>
       <a href="#seasonal" id="nav-seasonal" style="display: none;">嚴選糕點</a>
-      <a href="#craft">烤壽桃與門市</a>
       <a href="#about">品牌故事</a>
       <a href="#faq" id="nav-faq" style="display: none;">訂購問答</a>
       <a href="#contact">聯絡我們</a>
@@ -855,9 +894,12 @@
       </a>
     </section>
 
+    <!-- 第一核心主角：鎮店代表作「疼某餅」 -->
     <section id="signature">
       <div class="signature-layout">
-        <img src="images/tengmou-cake.jpg" alt="綠州堡烘焙代表作疼某餅" class="signature-img" loading="lazy">
+        <div class="signature-media">
+          <img src="images/tengmou-cake.jpg" alt="綠州堡烘焙代表作疼某餅" class="signature-img" loading="lazy">
+        </div>
         <div class="signature-content">
           <span class="section-eyebrow">鎮店代表作</span>
           <h2>疼某餅</h2>
@@ -874,6 +916,27 @@
       </div>
     </section>
 
+    <!-- 第二核心主角：經典手作「大真烤壽桃」 -->
+    <section id="shoutao">
+      <div class="signature-layout is-reversed">
+        <div class="signature-media">
+          <img src="images/shoutao.jpg" alt="綠州堡烘焙經典手作大真烤壽桃特寫" class="shoutao-featured-img" loading="lazy">
+        </div>
+        <div class="signature-content">
+          <span class="section-eyebrow">經典手作傳承</span>
+          <h2>大真烤壽桃</h2>
+          <p class="signature-lead">細火烘焙出醇厚餅香與飽滿內餡的祝壽首選</p>
+          <p>承襲二十餘年老師傅烘焙工藝，將傳統蒸製壽桃改良為金黃酥香的「烤壽桃」，外皮醇厚紮實、內餡綿密不甜膩。</p>
+          <p>免蒸熱、免冷凍解凍，常溫拆封即可品嚐最佳風味，無論長輩祝壽、生日慶賀或神明聖誕敬獻，皆大方體面。</p>
+          <ul class="feature-highlights">
+            <li>純手工細火慢烤，餅皮香氣濃郁不乾口</li>
+            <li>飽滿嚴選餡料，甜度適中老少咸宜</li>
+            <li>常溫即食免炊蒸，保存與分送皆便利</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
     <!-- 後台控制：嚴選糕點與手作禮盒（支援分類篩選 ＋ 1～3張多圖畫廊） -->
     <section id="seasonal">
       <div class="seasonal-header">
@@ -886,28 +949,21 @@
       <div class="seasonal-list" id="cms-seasonal-list"></div>
     </section>
 
-    <section id="craft">
-      <span class="section-eyebrow">經典手作與老店日常</span>
-      <div class="duo-grid">
-        <div class="duo-item">
-          <img src="images/shoutao.jpg" alt="綠州堡烘焙大真烤壽桃特寫" class="img-focus-shoutao" loading="lazy">
-          <h3>大真烤壽桃</h3>
-          <p>細火烘焙出醇厚外皮與飽滿豆沙餡，免蒸熱、免冷凍即可品嚐最佳風味，為祝壽與慶生的經典首選。</p>
-        </div>
-        <div class="duo-item">
-          <img src="images/store.jpg" alt="綠州堡烘焙高雄三民區建興路門市" id="cms-store-img" loading="lazy">
-          <h3 id="cms-store-name">建興路本店</h3>
-          <p id="cms-store-desc">扎根三民區建興路二十餘載，獲選台灣百大伴手禮肯定，堅持原料貨真價實，讓每一位顧客買得安心。</p>
-        </div>
-      </div>
-    </section>
-
+    <!-- 品牌傳承與建興路本店（完整保留 CMS 後台對應） -->
     <section id="about">
       <div class="about-wrap">
         <span class="section-eyebrow">1999 創立・二代傳承</span>
         <h2>把中式漢餅的美好，延續到日常</h2>
         <p>創立於 1999 年，綠州堡烘焙陪伴無數家庭走過節慶祝壽、婚嫁喜慶與日常茶點時光。我們始終專注於「食」的本質，將最好的品質呈現給顧客。</p>
         <p>如今由二代接棒，保留老師傅的古法手藝並融入新世代的細膩口感，讓傳統漢餅更貼近現代人的生活。</p>
+      </div>
+      <div class="store-showcase">
+        <img src="images/store.jpg" alt="綠州堡烘焙高雄三民區建興路門市" id="cms-store-img" loading="lazy">
+        <div>
+          <span class="section-eyebrow">FLAGSHIP STORE</span>
+          <h3 id="cms-store-name">建興路本店</h3>
+          <p id="cms-store-desc">扎根三民區建興路二十餘載，獲選台灣百大伴手禮肯定，堅持原料貨真價實，讓每一位顧客買得安心。</p>
+        </div>
       </div>
     </section>
 
