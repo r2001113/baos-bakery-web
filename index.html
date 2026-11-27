@@ -16,7 +16,54 @@
   <meta property="og:title" content="綠州堡烘焙｜疼某餅・大真烤壽桃・1999創立高雄老字號">
   <meta property="og:description" content="創立於1999年，用心做好餅是綠州堡最大的堅持。代表作「疼某餅」軟糯不黏牙、清酥不掉屑，把這份溫柔送給心裡重要的人。">
   <meta property="og:url" content="https://www.baos-bakery.com.tw/">
-  <meta property="og:image" content="https://www.baos-bakery.com.tw/images/logo.jpg">
+  <!-- 社群分享升級為鎮店代表作疼某餅實拍大圖 -->
+  <meta property="og:image" content="https://www.baos-bakery.com.tw/images/tengmou-cake.jpg">
+
+  <!-- Google 在地商家結構化資料（LocalBusiness / Bakery Schema） -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Bakery",
+    "name": "綠州堡烘焙（大真烤壽桃）",
+    "alternateName": "BAOS BAKERY 綠州堡烘焙",
+    "url": "https://www.baos-bakery.com.tw/",
+    "logo": "https://www.baos-bakery.com.tw/images/logo.jpg",
+    "image": [
+      "https://www.baos-bakery.com.tw/images/tengmou-cake.jpg",
+      "https://www.baos-bakery.com.tw/images/shoutao.jpg",
+      "https://www.baos-bakery.com.tw/images/store.jpg"
+    ],
+    "description": "創立於1999年，高雄在地老字號烘焙坊，榮獲台灣百大伴手禮。代表作「疼某餅」與經典「大真烤壽桃」。",
+    "foundingDate": "1999",
+    "telephone": "+886-7-390-3876",
+    "priceRange": "$$",
+    "servesCuisine": "中式漢餅、傳統糕點、烤壽桃、伴手禮",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "建興路195號",
+      "addressLocality": "三民區",
+      "addressRegion": "高雄市",
+      "postalCode": "807",
+      "addressCountry": "TW"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 22.6468,
+      "longitude": 120.3245
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+        "opens": "09:00",
+        "closes": "21:00"
+      }
+    ],
+    "sameAs": [
+      "https://www.facebook.com/baosbakery3903876/"
+    ]
+  }
+  </script>
 
   <!-- 開源免費商用字體：細字重思源宋體 + 思源黑體 -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -83,7 +130,7 @@
     nav {
       display: flex;
       align-items: center;
-      gap: 1.6rem;
+      gap: 1.45rem;
     }
     nav a {
       text-decoration: none;
@@ -345,6 +392,68 @@
     }
     .about-wrap p:last-child { margin-bottom: 0; }
 
+    /* 常見訂購問答 FAQ（極簡手風琴折疊設計，去卡片化） */
+    #faq {
+      display: none;
+    }
+    .faq-wrap {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .faq-header {
+      text-align: center;
+      margin-bottom: 2.25rem;
+    }
+    .faq-header h2 {
+      font-size: 1.65rem;
+      color: var(--primary);
+      letter-spacing: 0.08em;
+    }
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+    }
+    .faq-item:first-of-type {
+      border-top: 1px solid var(--border);
+    }
+    .faq-item summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 1.25rem 0;
+      font-family: "Noto Serif TC", "Songti TC", serif;
+      font-size: 1.05rem;
+      color: var(--primary);
+      letter-spacing: 0.04em;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      transition: color 0.2s;
+    }
+    .faq-item summary::-webkit-details-marker {
+      display: none;
+    }
+    .faq-item summary:hover {
+      color: var(--accent);
+    }
+    .faq-icon {
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 1.2rem;
+      font-weight: 300;
+      color: var(--accent);
+      flex-shrink: 0;
+      transition: transform 0.25s ease;
+    }
+    .faq-item[open] .faq-icon {
+      transform: rotate(45deg);
+    }
+    .faq-answer {
+      padding: 0 0 1.35rem 0;
+      font-size: 0.94rem;
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.85;
+    }
+
     /* 第三視覺：門市聯絡與報導 */
     .info-grid {
       display: grid;
@@ -433,11 +542,11 @@
       nav {
         width: 100%;
         justify-content: space-around;
-        gap: 0.4rem;
+        gap: 0.35rem;
         border-top: 1px solid rgba(230, 218, 203, 0.5);
         padding-top: 0.45rem;
       }
-      nav a { font-size: 0.88rem; }
+      nav a { font-size: 0.85rem; }
       section { padding: 4rem 0; scroll-margin-top: 96px; }
       .signature-layout, .duo-grid, .info-grid, .seasonal-item {
         grid-template-columns: 1fr;
@@ -455,6 +564,7 @@
       .signature-content h2 { font-size: 1.75rem; }
       .about-wrap { text-align: left; }
       .about-wrap h2 { font-size: 1.5rem; }
+      .faq-header { text-align: left; }
 
       .mobile-bottom-bar {
         display: grid;
@@ -469,12 +579,15 @@
         box-shadow: 0 -4px 16px rgba(74, 46, 27, 0.06);
         z-index: 100;
       }
+      .mobile-bottom-bar.has-line {
+        grid-template-columns: repeat(4, 1fr);
+      }
       .mobile-bottom-bar a {
         text-align: center;
         padding: 0.85rem 0.25rem;
         text-decoration: none;
         color: var(--primary);
-        font-size: 0.88rem;
+        font-size: 0.86rem;
         font-weight: 500;
         letter-spacing: 0.04em;
         border-right: 1px solid var(--border);
@@ -503,11 +616,12 @@
       <a href="#seasonal" id="nav-seasonal" style="display: none;">節慶限定</a>
       <a href="#craft">烤壽桃與門市</a>
       <a href="#about">品牌故事</a>
+      <a href="#faq" id="nav-faq" style="display: none;">訂購問答</a>
       <a href="#contact">聯絡我們</a>
     </nav>
   </header>
 
-  <!-- 後台控制：最新公告橫幅（前置標籤可自由修改或留白不顯示） -->
+  <!-- 後台控制：最新公告橫幅 -->
   <div class="notice-banner" id="cms-notice-banner">
     <span class="notice-badge" id="cms-notice-badge"></span>
     <span id="cms-notice-text"></span>
@@ -527,7 +641,7 @@
 
     <section id="signature">
       <div class="signature-layout">
-        <img src="images/tengmou-cake.jpg" alt="綠州堡烘焙代表作疼某餅" class="signature-img">
+        <img src="images/tengmou-cake.jpg" alt="綠州堡烘焙代表作疼某餅" class="signature-img" loading="lazy">
         <div class="signature-content">
           <span class="section-eyebrow">鎮店代表作</span>
           <h2>疼某餅</h2>
@@ -544,7 +658,7 @@
       </div>
     </section>
 
-    <!-- 後台控制：節慶限定 / 主打商品（僅顯示設為「上架」的商品） -->
+    <!-- 後台控制：節慶限定 / 主打商品 -->
     <section id="seasonal">
       <div class="seasonal-header">
         <span class="section-eyebrow" id="cms-seasonal-eyebrow">SEASONAL SELECTION</span>
@@ -557,12 +671,12 @@
       <span class="section-eyebrow">經典手作與老店日常</span>
       <div class="duo-grid">
         <div class="duo-item">
-          <img src="images/shoutao.jpg" alt="綠州堡烘焙大真烤壽桃特寫" class="img-focus-shoutao">
+          <img src="images/shoutao.jpg" alt="綠州堡烘焙大真烤壽桃特寫" class="img-focus-shoutao" loading="lazy">
           <h3>大真烤壽桃</h3>
           <p>細火烘焙出醇厚外皮與飽滿豆沙餡，免蒸熱、免冷凍即可品嚐最佳風味，為祝壽與慶生的經典首選。</p>
         </div>
         <div class="duo-item">
-          <img src="images/store.jpg" alt="綠州堡烘焙高雄三民區建興路門市" id="cms-store-img">
+          <img src="images/store.jpg" alt="綠州堡烘焙高雄三民區建興路門市" id="cms-store-img" loading="lazy">
           <h3 id="cms-store-name">建興路本店</h3>
           <p id="cms-store-desc">扎根三民區建興路二十餘載，獲選台灣百大伴手禮肯定，堅持原料貨真價實，讓每一位顧客買得安心。</p>
         </div>
@@ -578,6 +692,17 @@
       </div>
     </section>
 
+    <!-- 後台控制：常見訂購問答 FAQ（手風琴折疊區塊） -->
+    <section id="faq">
+      <div class="faq-wrap">
+        <div class="faq-header">
+          <span class="section-eyebrow">ORDERING & CARE</span>
+          <h2 id="cms-faq-title">常見訂購與保存問答</h2>
+        </div>
+        <div id="cms-faq-list"></div>
+      </div>
+    </section>
+
     <section id="contact">
       <div class="info-grid">
         <div class="info-block">
@@ -587,6 +712,7 @@
             <li><strong>服務專線</strong><a href="tel:073903876" id="cms-store-phone">07-390-3876</a></li>
             <li><strong>營業時間</strong><span id="cms-store-hours">週一至週日 09:00 - 21:00</span></li>
             <li><strong>門市地址</strong><a href="https://maps.app.goo.gl/brA2iWapRoTcWSqUA" target="_blank" rel="noopener" id="cms-store-address">高雄市三民區寶中里建興路195號（開啟地圖）</a></li>
+            <li id="cms-line-row" style="display: none;"><strong>LINE 訂購</strong><a href="#" target="_blank" rel="noopener" id="cms-line-link">加入官方 LINE 線上預訂</a></li>
             <li><strong>線上訂購</strong>歡迎來電或透過 Facebook 粉絲專頁私訊洽詢</li>
           </ul>
         </div>
@@ -604,9 +730,10 @@
 
   <a href="#" class="back-to-top" aria-label="回到頂部">&uarr;</a>
 
-  <div class="mobile-bottom-bar">
-    <a href="tel:073903876">撥打電話</a>
+  <div class="mobile-bottom-bar" id="mobile-bottom-bar">
+    <a href="tel:073903876" id="mobile-phone-link">撥打電話</a>
     <a href="https://maps.app.goo.gl/brA2iWapRoTcWSqUA" target="_blank" rel="noopener">地圖導航</a>
+    <a href="#" target="_blank" rel="noopener" id="mobile-line-link" style="display: none;">LINE 訂購</a>
     <a href="https://www.facebook.com/baosbakery3903876/">FB 粉專</a>
   </div>
 
@@ -622,7 +749,7 @@
         if (!res.ok) return;
         const data = await res.json();
 
-        // 1. 最新公告橫幅（標籤可自由修改，留白則完全隱藏標籤）
+        // 1. 最新公告橫幅
         if (data.notice && data.notice.active && data.notice.text && data.notice.text.trim() !== '') {
           const badgeEl = document.getElementById('cms-notice-badge');
           if (data.notice.badge && data.notice.badge.trim() !== '') {
@@ -642,7 +769,7 @@
           if (data.hero.description) document.getElementById('cms-hero-motto').textContent = data.hero.description;
         }
 
-        // 3. 節慶限定 / 主打商品（過濾出上架狀態 visible !== false 的商品）
+        // 3. 節慶限定 / 主打商品
         const metaActive = data.seasonal_meta ? (data.seasonal_meta.active !== false) : true;
         if (data.seasonal_meta) {
           if (data.seasonal_meta.eyebrow) document.getElementById('cms-seasonal-eyebrow').textContent = data.seasonal_meta.eyebrow;
@@ -658,7 +785,7 @@
             const imgSrc = item.image ? item.image.replace(/^\//, '') : 'images/shoutao.jpg';
             return `
               <div class="seasonal-item">
-                <img src="${imgSrc}" alt="${item.name || '綠州堡節慶禮盒'}">
+                <img src="${imgSrc}" alt="${item.name || '綠州堡節慶禮盒'}" loading="lazy">
                 <div class="seasonal-info">
                   ${item.tag && item.tag.trim() !== '' ? `<span class="seasonal-tag">${item.tag}</span>` : ''}
                   <h3>${item.name || ''}</h3>
@@ -672,21 +799,79 @@
           document.getElementById('nav-seasonal').style.display = 'inline-block';
         }
 
-        // 4. 門市資訊同步
+        // 4. 常見訂購問答 FAQ（手風琴折疊區塊 + 自動生成 FAQPage 結構化資料）
+        const faqActive = data.faq_meta ? (data.faq_meta.active !== false) : true;
+        if (data.faq_meta && data.faq_meta.title) {
+          document.getElementById('cms-faq-title').textContent = data.faq_meta.title;
+        }
+        const allFaqs = Array.isArray(data.faqs) ? data.faqs : [];
+        const visibleFaqs = allFaqs.filter(item => item && item.visible !== false && item.question && item.answer);
+
+        if (faqActive && visibleFaqs.length > 0) {
+          const faqListEl = document.getElementById('cms-faq-list');
+          faqListEl.innerHTML = visibleFaqs.map((item, idx) => `
+            <details class="faq-item"${idx === 0 ? ' open' : ''}>
+              <summary>
+                <span>${item.question}</span>
+                <span class="faq-icon">+</span>
+              </summary>
+              <div class="faq-answer">${item.answer}</div>
+            </details>
+          `).join('');
+          document.getElementById('faq').style.display = 'block';
+          document.getElementById('nav-faq').style.display = 'inline-block';
+
+          // 動態寫入 FAQPage Schema 供 Google 搜尋引擎收錄
+          const faqSchema = {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": visibleFaqs.map(item => ({
+              "@type": "Question",
+              "name": item.question,
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": item.answer
+              }
+            }))
+          };
+          const scriptEl = document.createElement('script');
+          scriptEl.type = 'application/ld+json';
+          scriptEl.textContent = JSON.stringify(faqSchema);
+          document.head.appendChild(scriptEl);
+        }
+
+        // 5. 門市資訊與未來 LINE 官方帳號自動連動
         if (data.store) {
           if (data.store.name) document.getElementById('cms-store-name').textContent = data.store.name;
           if (data.store.description) document.getElementById('cms-store-desc').textContent = data.store.description;
           if (data.store.hours) document.getElementById('cms-store-hours').textContent = data.store.hours;
           if (data.store.phone) {
+            const cleanPhone = data.store.phone.replace(/[^0-9]/g, '');
             const phoneEl = document.getElementById('cms-store-phone');
             phoneEl.textContent = data.store.phone;
-            phoneEl.href = 'tel:' + data.store.phone.replace(/[^0-9]/g, '');
+            phoneEl.href = 'tel:' + cleanPhone;
+            document.getElementById('mobile-phone-link').href = 'tel:' + cleanPhone;
           }
           if (data.store.address) {
             document.getElementById('cms-store-address').textContent = data.store.address + '（開啟地圖）';
           }
           if (data.store.image) {
             document.getElementById('cms-store-img').src = data.store.image.replace(/^\//, '');
+          }
+          // 若未來在後台填入 LINE 網址，自動開啟聯絡清單與手機底部快捷列按鈕
+          if (data.store.line_url && data.store.line_url.trim() !== '') {
+            const lineUrl = data.store.line_url.trim();
+            const lineLink = document.getElementById('cms-line-link');
+            lineLink.href = lineUrl;
+            if (data.store.line_label && data.store.line_label.trim() !== '') {
+              lineLink.textContent = data.store.line_label.trim();
+            }
+            document.getElementById('cms-line-row').style.display = 'list-item';
+
+            const mobileLine = document.getElementById('mobile-line-link');
+            mobileLine.href = lineUrl;
+            mobileLine.style.display = 'block';
+            document.getElementById('mobile-bottom-bar').classList.add('has-line');
           }
         }
       } catch (e) {
