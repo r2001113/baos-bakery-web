@@ -109,7 +109,7 @@
       font-weight: 400;
     }
 
-    /* 頂部極簡導覽列 */
+    /* 頂部極簡導覽列（支援滾動時浮現微陰影） */
     header {
       border-bottom: 1px solid rgba(230, 218, 203, 0.7);
       padding: 0.9rem 5%;
@@ -121,6 +121,11 @@
       z-index: 100;
       background: rgba(250, 246, 240, 0.94);
       backdrop-filter: blur(8px);
+      transition: box-shadow 0.35s ease, border-color 0.35s ease;
+    }
+    header.scrolled {
+      box-shadow: 0 6px 22px rgba(74, 46, 27, 0.065);
+      border-bottom-color: rgba(230, 218, 203, 0.45);
     }
     .brand {
       display: flex;
@@ -141,6 +146,7 @@
       letter-spacing: 0.08em;
     }
     nav {
+      position: relative;
       display: flex;
       align-items: center;
       gap: 1.45rem;
@@ -150,11 +156,34 @@
       color: var(--text-muted);
       font-size: 0.9rem;
       letter-spacing: 0.06em;
-      padding: 0.3rem 0.2rem;
-      transition: color 0.2s;
+      padding: 0.35rem 0.2rem;
+      transition: color 0.28s ease;
       white-space: nowrap;
     }
     nav a:hover { color: var(--primary); }
+    nav a.active {
+      color: var(--primary);
+      font-weight: 500;
+    }
+
+    /* 導覽列阻尼緩衝滑動底線指示器 */
+    .nav-indicator {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 2px;
+      width: 0;
+      background: linear-gradient(90deg, rgba(180, 123, 56, 0.75), var(--accent), rgba(180, 123, 56, 0.75));
+      border-radius: 2px;
+      box-shadow: 0 2px 6px rgba(180, 123, 56, 0.32);
+      opacity: 0;
+      pointer-events: none;
+      /* 先快後慢、到達前帶有優雅減速緩衝的阻尼曲線 */
+      transition:
+        transform 0.48s cubic-bezier(0.22, 1, 0.36, 1),
+        width 0.48s cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 0.28s ease;
+    }
 
     /* 最新公告橫幅（方案 A：支援智慧平衡換行防孤字） */
     .notice-banner {
@@ -555,7 +584,7 @@
       header {
         flex-direction: column;
         gap: 0.55rem;
-        padding: 0.75rem 4%;
+        padding: 0.75rem 4% 0.5rem;
       }
       nav {
         width: 100%;
@@ -563,6 +592,7 @@
         gap: 0.35rem;
         border-top: 1px solid rgba(230, 218, 203, 0.5);
         padding-top: 0.45rem;
+        padding-bottom: 0.25rem;
       }
       nav a { font-size: 0.85rem; }
       section { padding: 4rem 0; scroll-margin-top: 96px; }
@@ -630,18 +660,19 @@
 </head>
 <body>
 
-  <header>
+  <header id="site-header">
     <a href="#" class="brand">
       <img src="images/logo.jpg" alt="綠州堡烘焙 Logo" class="brand-logo">
       <span class="brand-text">綠州堡烘焙</span>
     </a>
-    <nav>
+    <nav id="main-nav">
       <a href="#signature">疼某餅</a>
       <a href="#seasonal" id="nav-seasonal" style="display: none;">節慶限定</a>
       <a href="#craft">烤壽桃與門市</a>
       <a href="#about">品牌故事</a>
       <a href="#faq" id="nav-faq" style="display: none;">訂購問答</a>
       <a href="#contact">聯絡我們</a>
+      <span class="nav-indicator" id="nav-indicator"></span>
     </nav>
   </header>
 
@@ -782,6 +813,90 @@
     });
   </script>
 
+  <!-- 導覽列滾動監聽、阻尼緩衝滑動底線與頂部微陰影控制 -->
+  <script>
+    (function initNavScrollSpy() {
+      const header = document.getElementById('site-header');
+      const nav = document.getElementById('main-nav');
+      const indicator = document.getElementById('nav-indicator');
+      const navLinks = Array.from(nav.querySelectorAll('a[href^="#"]'));
+
+      function moveIndicator(activeLink) {
+        if (!activeLink || activeLink.style.display === 'none') {
+          indicator.style.opacity = '0';
+          return;
+        }
+        const navRect = nav.getBoundingClientRect();
+        const linkRect = activeLink.getBoundingClientRect();
+        const left = linkRect.left - navRect.left;
+        indicator.style.width = linkRect.width + 'px';
+        indicator.style.transform = `translateX(${left}px)`;
+        indicator.style.opacity = '1';
+      }
+
+      function updateActiveSection() {
+        const scrollY = window.scrollY;
+
+        // 1. 頂部導覽列滾動時浮現微陰影
+        if (scrollY > 24) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+
+        // 2. 判斷目前視窗閱讀到哪一個章節
+        const headerOffset = header.offsetHeight + 80;
+        const visibleLinks = navLinks.filter(link => link.offsetParent !== null);
+
+        // 若還在首屏 Hero 上方，隱藏底線並取消選取
+        const firstTarget = visibleLinks[0] ? document.querySelector(visibleLinks[0].getAttribute('href')) : null;
+        if (firstTarget && scrollY + headerOffset < firstTarget.offsetTop) {
+          navLinks.forEach(l => l.classList.remove('active'));
+          indicator.style.opacity = '0';
+          return;
+        }
+
+        let currentLink = null;
+        // 若已捲動到頁面最底部，直接鎖定最後一項（聯絡我們）
+        if ((window.innerHeight + scrollY) >= document.documentElement.scrollHeight - 20) {
+          currentLink = visibleLinks[visibleLinks.length - 1];
+        } else {
+          for (const link of visibleLinks) {
+            const target = document.querySelector(link.getAttribute('href'));
+            if (target && target.style.display !== 'none') {
+              if (scrollY + headerOffset >= target.offsetTop) {
+                currentLink = link;
+              }
+            }
+          }
+        }
+
+        navLinks.forEach(l => l.classList.remove('active'));
+        if (currentLink) {
+          currentLink.classList.add('active');
+          moveIndicator(currentLink);
+        } else {
+          indicator.style.opacity = '0';
+        }
+      }
+
+      // 點擊選單項目時立即觸發緩衝滑動
+      navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          navLinks.forEach(l => l.classList.remove('active'));
+          link.classList.add('active');
+          moveIndicator(link);
+        });
+      });
+
+      window.addEventListener('scroll', updateActiveSection, { passive: true });
+      window.addEventListener('resize', updateActiveSection);
+      window.addEventListener('load', updateActiveSection);
+      // 供 CMS 動態顯示區塊後重新校正位置
+      window.refreshNavIndicator = updateActiveSection;
+    })();
+  </script>
+
   <!-- 自動讀取 Pages CMS 後台產生的 content.json 資料 -->
   <script>
     (async function loadCmsContent() {
@@ -912,6 +1027,11 @@
             mobileLine.style.display = 'block';
             document.getElementById('mobile-bottom-bar').classList.add('has-line');
           }
+        }
+
+        // CMS 資料載入後重新校正導覽列滑動底線位置
+        if (typeof window.refreshNavIndicator === 'function') {
+          window.refreshNavIndicator();
         }
       } catch (e) {
         console.warn('CMS content fallback to static HTML:', e);
