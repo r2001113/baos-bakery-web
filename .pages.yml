@@ -62,10 +62,11 @@ content:
             type: boolean
             default: true
           - name: category
-            label: 系列分類（用於前台分類標籤切換）
+            label: 系列分類（可下拉選取，或直接打字輸入新分類名稱後按 Enter）
             type: select
             default: 常態手作
             options:
+              creatable: true
               values:
                 - 常態手作
                 - 節慶限定
