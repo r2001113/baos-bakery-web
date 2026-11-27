@@ -81,13 +81,19 @@
       --border: #e6dacb;        /* 極細暖框線 */
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+      max-width: 100%;
+    }
     body {
       font-family: "Noto Sans TC", -apple-system, BlinkMacSystemFont, "Microsoft JhengHei", sans-serif;
       font-weight: 400;
       line-height: 1.9;
       color: var(--text);
       background-color: var(--bg);
+      overflow-x: hidden;
+      max-width: 100%;
       -webkit-tap-highlight-color: transparent;
       /* 智慧型反複製：防止全站品牌文案被滑鼠反白選取 */
       -webkit-user-select: none;
@@ -111,6 +117,8 @@
 
     /* 頂部極簡導覽列（支援滾動時浮現微陰影） */
     header {
+      width: 100%;
+      max-width: 100vw;
       border-bottom: 1px solid rgba(230, 218, 203, 0.7);
       padding: 0.9rem 5%;
       display: flex;
@@ -205,7 +213,7 @@
       letter-spacing: 0.08em;
     }
 
-    main { max-width: 920px; margin: 0 auto; padding: 0 5%; }
+    main { max-width: 920px; width: 100%; margin: 0 auto; padding: 0 5%; }
     section {
       padding: 5.5rem 0;
       border-bottom: 1px solid rgba(230, 218, 203, 0.65);
@@ -325,7 +333,7 @@
       margin-bottom: 0;
     }
 
-    /* 嚴選糕點與禮盒（分類篩選 ＋ 1～3張多圖畫廊 ＋ 電腦左右交錯排版） */
+    /* 嚴選糕點與禮盒（分類篩選 ＋ 1～3張多圖畫廊 ＋ 電腦左右交錯 ＋ 明確分隔線） */
     #seasonal {
       display: none;
     }
@@ -346,7 +354,8 @@
     .category-tabs {
       display: none;
       align-items: center;
-      gap: 1.35rem;
+      flex-wrap: wrap;
+      gap: 1.15rem;
       border-bottom: 1px solid var(--border);
     }
     .category-tab {
@@ -374,13 +383,19 @@
     .seasonal-list {
       display: flex;
       flex-direction: column;
-      gap: 3.75rem;
+      gap: 3.5rem;
     }
     .seasonal-item {
       display: grid;
       grid-template-columns: 1fr 1.1fr;
       gap: 2.75rem;
       align-items: center;
+      padding-bottom: 3.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .seasonal-item:last-child {
+      padding-bottom: 0;
+      border-bottom: none;
     }
     /* 電腦版偶數項自動左右交錯（右圖左文），增加視覺節奏 */
     .seasonal-item.is-reversed {
@@ -694,27 +709,58 @@
     @media (max-width: 768px) {
       header {
         flex-direction: column;
-        gap: 0.55rem;
-        padding: 0.75rem 4% 0.5rem;
+        gap: 0.5rem;
+        padding: 0.7rem 3% 0.45rem;
       }
       nav {
         width: 100%;
-        justify-content: space-around;
-        gap: 0.35rem;
+        justify-content: space-between;
+        gap: 0.15rem;
         border-top: 1px solid rgba(230, 218, 203, 0.5);
         padding-top: 0.45rem;
         padding-bottom: 0.25rem;
       }
-      nav a { font-size: 0.85rem; }
+      nav a {
+        font-size: 0.8rem;
+        letter-spacing: 0.02em;
+        padding: 0.3rem 0.1rem;
+      }
       section { padding: 4rem 0; scroll-margin-top: 96px; }
-      .signature-layout, .duo-grid, .info-grid, .seasonal-item, .seasonal-item.is-reversed {
+      .signature-layout, .duo-grid, .info-grid {
         grid-template-columns: 1fr;
-        gap: 1.65rem;
+        gap: 1.85rem;
+      }
+      /* 手機版商品列表：收緊「同款商品的圖與文」距離，拉開「不同商品之間的分隔線與留白」 */
+      .seasonal-list {
+        gap: 2.75rem;
+      }
+      .seasonal-item, .seasonal-item.is-reversed {
+        grid-template-columns: 1fr;
+        gap: 1.15rem;
+        padding-bottom: 2.75rem;
+      }
+      .seasonal-item:last-child {
+        padding-bottom: 0;
       }
       /* 手機版統一恢復為「上圖下文」，取消左右交錯 */
       .seasonal-item.is-reversed .product-gallery { order: 1; }
       .seasonal-item.is-reversed .seasonal-info { order: 2; }
       .signature-img { aspect-ratio: 4 / 3; }
+    }
+
+    /* 針對 iPhone 等窄螢幕手機進一步收斂導覽列字距，確保 6 個選單 100% 容納不溢出 */
+    @media (max-width: 430px) {
+      header {
+        padding: 0.65rem 2.5% 0.45rem;
+      }
+      nav {
+        gap: 0;
+      }
+      nav a {
+        font-size: 0.75rem;
+        letter-spacing: 0;
+        padding: 0.28rem 0.05rem;
+      }
     }
 
     @media (max-width: 600px) {
@@ -731,7 +777,6 @@
       .hero-motto { font-size: 0.98rem; margin-bottom: 2.25rem; }
       .signature-content h2 { font-size: 1.75rem; }
       .seasonal-header { margin-bottom: 2rem; }
-      .seasonal-list { gap: 3rem; }
       .about-wrap { text-align: left; }
       .about-wrap h2 { font-size: 1.5rem; }
       .faq-header { text-align: left; }
@@ -1052,17 +1097,15 @@
           const listEl = document.getElementById('cms-seasonal-list');
           const tabsEl = document.getElementById('cms-category-tabs');
 
-          // 擷取目前已上架商品的所有不重複分類
-          const categories = ['全部品項', ...new Set(visibleProducts.map(p => p.category || '常態手作'))];
+          const categories = ['全部品項', ...new Set(visibleProducts.map(p => (p.category && p.category.trim()) || '常態手作'))];
           let currentCategory = '全部品項';
 
           function renderProducts(filterCat) {
             const filtered = filterCat === '全部品項'
               ? visibleProducts
-              : visibleProducts.filter(p => (p.category || '常態手作') === filterCat);
+              : visibleProducts.filter(p => ((p.category && p.category.trim()) || '常態手作') === filterCat);
 
             listEl.innerHTML = filtered.map((item, idx) => {
-              // 兼容新版多圖陣列 images 與舊版單圖 image
               let imgList = [];
               if (Array.isArray(item.images) && item.images.length > 0) {
                 imgList = item.images.filter(Boolean).map(src => src.replace(/^\//, ''));
@@ -1073,6 +1116,7 @@
 
               const hasMulti = imgList.length > 1;
               const isReversed = idx % 2 === 1 ? ' is-reversed' : '';
+              const catName = (item.category && item.category.trim()) || '常態手作';
 
               const thumbsHtml = hasMulti ? `
                 <div class="gallery-thumbs">
@@ -1095,7 +1139,7 @@
                   </div>
                   <div class="seasonal-info">
                     <div class="seasonal-meta-row">
-                      <span class="seasonal-cat-badge">${item.category || '常態手作'}</span>
+                      <span class="seasonal-cat-badge">${catName}</span>
                       ${item.tag && item.tag.trim() !== '' ? `<span class="seasonal-tag">${item.tag}</span>` : ''}
                     </div>
                     <h3>${item.name || ''}</h3>
@@ -1106,7 +1150,6 @@
               `;
             }).join('');
 
-            // 綁定多圖畫廊切換與手機左右滑動事件
             listEl.querySelectorAll('.product-gallery').forEach(gallery => {
               const imgs = JSON.parse(gallery.dataset.images || '[]');
               if (imgs.length <= 1) return;
@@ -1133,7 +1176,6 @@
                 btn.addEventListener('click', () => switchTo(Number(btn.dataset.index)));
               });
 
-              // 手機觸控左右滑動換張
               let touchStartX = 0;
               mainWrap.addEventListener('touchstart', e => {
                 touchStartX = e.changedTouches[0].screenX;
@@ -1152,7 +1194,6 @@
             }
           }
 
-          // 若有多個分類（例如同時有常態手作與節慶限定），顯示頂部分類切換列
           if (categories.length > 2) {
             tabsEl.style.display = 'flex';
             tabsEl.innerHTML = categories.map(cat => `
@@ -1250,7 +1291,6 @@
           }
         }
 
-        // CMS 資料載入後重新校正導覽列滑動底線位置
         if (typeof window.refreshNavIndicator === 'function') {
           window.refreshNavIndicator();
         }
