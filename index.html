@@ -586,7 +586,7 @@
       white-space: pre-wrap;
     }
 
-    /* 品牌傳承與本店空間（大標與故事內文統一置中對稱排版） */
+    /* 品牌傳承與本店空間（大標與故事內文統一置中對稱排版 ＋ 自動視覺平衡換行） */
     .about-wrap {
       max-width: 720px;
       margin: 0 auto 3.5rem;
@@ -747,11 +747,11 @@
       white-space: pre-wrap;
     }
 
-    /* 門市聯絡與報導 */
+    /* 門市聯絡與動態報導（左右等寬雙欄 ＋ 標籤固定對齊 ＋ 折行連續底線） */
     .info-grid {
       display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 3rem;
+      grid-template-columns: 1fr 1fr;
+      gap: 3.25rem;
       align-items: start;
     }
     .info-block h2 {
@@ -764,28 +764,45 @@
       list-style: none;
     }
     .clean-list li {
-      padding: 0.75rem 0;
+      padding: 0.85rem 0;
       border-bottom: 1px solid var(--border);
       font-size: 0.92rem;
       font-weight: 300;
       color: var(--text-muted);
+      display: flex;
+      align-items: baseline;
+      gap: 0.85rem;
+      line-height: 1.7;
     }
     .clean-list li:last-child { border-bottom: none; }
     .clean-list strong {
       font-weight: 500;
       color: var(--text);
-      margin-right: 0.5rem;
+      min-width: 4.2em;
+      flex-shrink: 0;
+      letter-spacing: 0.04em;
     }
     .clean-list a {
       color: var(--primary);
-      text-decoration: none;
-      border-bottom: 1px solid rgba(180, 123, 56, 0.45);
-      padding-bottom: 1px;
-      transition: color 0.2s, border-color 0.2s;
+      text-decoration: underline;
+      text-decoration-color: rgba(180, 123, 56, 0.5);
+      text-underline-offset: 4px;
+      text-decoration-thickness: 1px;
+      transition: color 0.2s, text-decoration-color 0.2s;
     }
     .clean-list a:hover {
       color: var(--accent);
-      border-color: var(--accent);
+      text-decoration-color: var(--accent);
+    }
+    .ext-arrow {
+      display: inline-block;
+      margin-left: 0.25em;
+      font-size: 0.85em;
+      color: var(--accent);
+      transition: transform 0.2s ease;
+    }
+    .clean-list a:hover .ext-arrow {
+      transform: translate(2px, -2px);
     }
 
     /* 右下角回到頂部按鈕 */
@@ -1083,19 +1100,19 @@
           <span class="section-eyebrow">VISIT US</span>
           <h2>門市與訂購洽詢</h2>
           <ul class="clean-list">
-            <li><strong>服務專線</strong><a href="tel:073903876" id="cms-store-phone">07-390-3876</a></li>
+            <li><strong>服務專線</strong><span><a href="tel:073903876" id="cms-store-phone">07-390-3876</a></span></li>
             <li><strong>營業時間</strong><span id="cms-store-hours">週一至週日 09:00 - 21:00</span></li>
-            <li><strong>門市地址</strong><a href="https://maps.app.goo.gl/brA2iWapRoTcWSqUA" target="_blank" rel="noopener" id="cms-store-address">高雄市三民區寶中里建興路195號（開啟地圖）</a></li>
-            <li id="cms-line-row" style="display: none;"><strong>LINE 訂購</strong><a href="#" target="_blank" rel="noopener" id="cms-line-link">加入官方 LINE 線上預訂</a></li>
-            <li><strong>線上訂購</strong>歡迎來電或透過 Facebook 粉絲專頁私訊洽詢</li>
+            <li><strong>門市地址</strong><span><a href="https://maps.app.goo.gl/brA2iWapRoTcWSqUA" target="_blank" rel="noopener" id="cms-store-address">高雄市三民區寶中里建興路195號（開啟地圖）</a></span></li>
+            <li id="cms-line-row" style="display: none;"><strong>LINE 訂購</strong><span><a href="#" target="_blank" rel="noopener" id="cms-line-link">加入官方 LINE 線上預訂</a></span></li>
+            <li><strong>線上訂購</strong><span>歡迎來電或透過 Facebook 粉絲專頁私訊洽詢</span></li>
           </ul>
         </div>
-        <div class="info-block">
-          <span class="section-eyebrow">NEWS & PRESS</span>
-          <h2>最新動態與報導</h2>
-          <ul class="clean-list">
-            <li><strong>官方粉專</strong><a href="https://www.facebook.com/baosbakery3903876/">綠州堡烘焙 Facebook（節慶預購與公告）</a></li>
-            <li><strong>專題報導</strong><a href="https://www.estwedding.com/archives/8396" target="_blank" rel="noopener">品牌工藝故事與特色介紹 &rarr;</a></li>
+        <div class="info-block" id="cms-press-block">
+          <span class="section-eyebrow" id="cms-press-eyebrow">NEWS & PRESS</span>
+          <h2 id="cms-press-title">最新動態與報導</h2>
+          <ul class="clean-list" id="cms-press-list">
+            <li><strong>官方粉專</strong><span><a href="https://www.facebook.com/baosbakery3903876/" target="_blank" rel="noopener">綠州堡烘焙 Facebook（節慶預購與公告）<span class="ext-arrow" aria-hidden="true">↗</span></a></span></li>
+            <li><strong>專題報導</strong><span><a href="https://www.estwedding.com/archives/8396" target="_blank" rel="noopener">品牌工藝故事與特色介紹<span class="ext-arrow" aria-hidden="true">↗</span></a></span></li>
           </ul>
         </div>
       </div>
@@ -1536,6 +1553,40 @@
             mobileLine.href = lineUrl;
             mobileLine.style.display = 'block';
             document.getElementById('mobile-bottom-bar').classList.add('has-line');
+          }
+        }
+
+        // 6. 最新動態與報導（支援多筆清單・關閉或未輸入自動隱藏・未填網址自動降級純文字）
+        if (data.press_meta) {
+          if (data.press_meta.eyebrow && data.press_meta.eyebrow.trim() !== '') {
+            document.getElementById('cms-press-eyebrow').textContent = data.press_meta.eyebrow.trim();
+          }
+          if (data.press_meta.title && data.press_meta.title.trim() !== '') {
+            document.getElementById('cms-press-title').textContent = data.press_meta.title.trim();
+          }
+        }
+        if (Array.isArray(data.press_items)) {
+          const validPress = data.press_items.filter(item =>
+            item &&
+            item.visible !== false &&
+            item.label && item.label.trim() !== '' &&
+            item.title && item.title.trim() !== ''
+          );
+          const pressListEl = document.getElementById('cms-press-list');
+          if (validPress.length > 0) {
+            pressListEl.innerHTML = validPress.map(item => {
+              const labelText = item.label.trim();
+              const titleText = item.title.trim();
+              const urlText = item.url ? item.url.trim() : '';
+              const contentHtml = urlText !== ''
+                ? `<a href="${urlText}" target="_blank" rel="noopener">${titleText}<span class="ext-arrow" aria-hidden="true">↗</span></a>`
+                : titleText;
+              return `<li><strong>${labelText}</strong><span>${contentHtml}</span></li>`;
+            }).join('');
+          } else if (data.press_items.length > 0) {
+            // 若後台有建立項目但全數關閉或未填寫完整，則隱藏該欄避免空窗
+            document.getElementById('cms-press-block').style.display = 'none';
+            document.querySelector('#contact .info-grid').style.gridTemplateColumns = '1fr';
           }
         }
 
