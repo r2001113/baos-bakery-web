@@ -9,7 +9,7 @@ content:
     path: content.json
     fields:
       - name: notice
-        label: "① 頂部最新公告（選填）"
+        label: "① 頂部最新公告（支援單行靜態 ／ Enter換行多則垂直輪播）"
         type: object
         fields:
           - name: active
@@ -17,11 +17,15 @@ content:
             type: boolean
             default: true
           - name: badge
-            label: 前置標籤文字（如：節慶預購、公休通知；留白則不顯示標籤）
+            label: 前置標籤文字（如：節慶預購、公休通知；留白則僅顯示暖金呼吸圓點）
             type: string
           - name: text
-            label: 公告內容（例如：中秋禮盒開放預購中，歡迎來電 07-390-3876）
-            type: string
+            label: 公告內容（單行＝靜態顯示；按 Enter 換行輸入多行＝自動垂直淡入輪播）
+            type: text
+          - name: interval
+            label: 多則輪播間隔秒數（預設 4.5 秒；系統限制範圍 2.5～12 秒）
+            type: number
+            default: 4.5
 
       - name: hero
         label: "② 首頁封面區（主視覺文字）"
@@ -65,12 +69,6 @@ content:
             label: 系列分類（可直接輸入 4 字分類名稱，如：常態手作、節慶限定、伴手禮盒、經典熱銷）
             type: string
             default: 常態手作
-            options:
-              creatable: true
-              values:
-                - 常態手作
-                - 節慶限定
-                - 伴手禮盒
           - name: name
             label: 商品名稱（如：歐式烤年糕、黑香蕉燒餅、中秋月餅）
             type: string
@@ -117,18 +115,23 @@ content:
             type: text
 
       - name: store
-        label: "⑤ 建興路本店與聯絡資訊（含未來 LINE 預留）"
+        label: "⑤ 門市空間與聯絡資訊（含未來 LINE 預留）"
         type: object
         fields:
           - name: name
-            label: 門市標題（預設：建興路本店）
+            label: 門市標題（如：本店 或 建興路本店）
             type: string
           - name: description
             label: 門市簡介段落
             type: text
           - name: image
-            label: 門市環境照片
+            label: 門市環境照片集（選 1 張＝靜態主圖；選 2～3 張＝慢速交叉淡入氛圍輪播）
             type: image
+            list: true
+          - name: fade_interval
+            label: 門市多圖淡入切換秒數（預設 5 秒；系統限制範圍 3～15 秒）
+            type: number
+            default: 5
           - name: phone
             label: 服務專線
             type: string
