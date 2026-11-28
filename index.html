@@ -747,11 +747,11 @@
       white-space: pre-wrap;
     }
 
-    /* 門市聯絡與動態報導（左右等寬雙欄 ＋ 標籤固定對齊 ＋ 折行連續底線） */
+   /* 門市聯絡與動態報導（左右等寬雙欄 ＋ 標籤固定對齊 ＋ 單行俐落不折行） */
     .info-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 3.25rem;
+      gap: 2.5rem;
       align-items: start;
     }
     .info-block h2 {
@@ -766,12 +766,12 @@
     .clean-list li {
       padding: 0.85rem 0;
       border-bottom: 1px solid var(--border);
-      font-size: 0.92rem;
+      font-size: 0.88rem;
       font-weight: 300;
       color: var(--text-muted);
       display: flex;
       align-items: baseline;
-      gap: 0.85rem;
+      gap: 0.65rem;
       line-height: 1.7;
     }
     .clean-list li:last-child { border-bottom: none; }
