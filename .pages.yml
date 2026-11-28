@@ -121,9 +121,23 @@ content:
           - name: name
             label: 門市標題（如：本店 或 建興路本店）
             type: string
+          - name: subtitle
+            label: 門市副標題（預設：溫潤木質空間・誠心款待每一位來客）
+            type: string
           - name: description
             label: 門市簡介段落
             type: text
+          - name: highlights
+            label: 門市特色亮點清單（建議維持 3 項，每項右側說明控制在 14 字內不折行）
+            type: object
+            list: true
+            fields:
+              - name: title
+                label: 亮點標題（如：每日新鮮現烤）
+                type: string
+              - name: text
+                label: 亮點說明（如：熱騰出爐，歡迎門市親自挑選）
+                type: string
           - name: image
             label: 門市環境照片集（選 1 張＝靜態主圖；選 2～3 張＝慢速交叉淡入氛圍輪播）
             type: image
