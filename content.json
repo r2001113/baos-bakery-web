@@ -104,6 +104,21 @@
       "label": "IG 專頁",
       "title": "綠州堡烘焙 IG 專頁",
       "url": "https://www.instagram.com/explore/locations/649819898/lu-zhou-bao-hong-bei/"
+    },
+    {
+      "visible": true,
+      "label": "榮獲肯定",
+      "title": "黑香蕉燒餅 奪金賞",
+      "url": "https://youngnews3631.com/news_detail.php?NewsID=11207"
+    },
+    {
+      "visible": true,
+      "label": "專題報導",
+      "title": "品牌工藝故事與特色介紹",
+      "url": "https://www.estwedding.com/archives/8396"
+    },
+    {
+      "visible": false
     }
   ]
 }
