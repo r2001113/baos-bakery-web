@@ -95,16 +95,13 @@
       overflow-x: clip;
       max-width: 100%;
       -webkit-tap-highlight-color: transparent;
-      /* 智慧型反複製：防止全站品牌文案被滑鼠反白選取 */
       -webkit-user-select: none;
       user-select: none;
     }
-    /* 防止產品與門市照片被長按或拖曳下載 */
     img {
       -webkit-touch-callout: none;
       pointer-events: none;
     }
-    /* 貼心放行：允許顧客反白複製門市電話、營業時間與地址 */
     .clean-list, .clean-list a, .clean-list span {
       -webkit-user-select: text;
       user-select: text;
@@ -191,7 +188,7 @@
         opacity 0.28s ease;
     }
 
-    /* 最新公告橫幅（方案 A：支援智慧平衡換行防孤字） */
+    /* 最新公告橫幅（暖金呼吸圓點 ＋ 單則靜態 / 多則垂直優雅淡入輪播） */
     .notice-banner {
       display: none;
       background: var(--surface-alt);
@@ -202,14 +199,55 @@
       line-height: 1.55;
       color: var(--primary);
       letter-spacing: 0.04em;
-      text-wrap: balance;
+    }
+    .notice-inner {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55rem;
+      max-width: 100%;
+    }
+    .notice-pulse-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: var(--accent);
+      flex-shrink: 0;
+      box-shadow: 0 0 0 0 rgba(180, 123, 56, 0.55);
+      animation: warmPulse 2.8s infinite ease-in-out;
+    }
+    @keyframes warmPulse {
+      0%, 100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(180, 123, 56, 0.5);
+        opacity: 0.85;
+      }
+      50% {
+        transform: scale(1.12);
+        box-shadow: 0 0 0 5px rgba(180, 123, 56, 0);
+        opacity: 1;
+      }
     }
     .notice-badge {
       display: none;
       color: var(--accent-hover);
       font-weight: 500;
-      margin-right: 0.6rem;
       letter-spacing: 0.08em;
+      flex-shrink: 0;
+    }
+    .notice-text-wrap {
+      display: inline-block;
+      text-wrap: balance;
+      transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .notice-text-wrap.is-leaving {
+      opacity: 0;
+      transform: translateY(-7px);
+    }
+    .notice-text-wrap.is-entering {
+      opacity: 0;
+      transform: translateY(7px);
+      transition: none;
     }
 
     main { max-width: 920px; width: 100%; margin: 0 auto; padding: 0 5%; }
@@ -292,7 +330,6 @@
       gap: 3.25rem;
       align-items: center;
     }
-    /* 電腦版第二主角（大真烤壽桃）採用右圖左文，與上方疼某餅形成左右對稱呼應 */
     .signature-layout.is-reversed {
       grid-template-columns: 1.1fr 1fr;
     }
@@ -390,7 +427,6 @@
       color: var(--primary);
       letter-spacing: 0.08em;
     }
-    /* 極簡分類切換標籤 */
     .category-tabs {
       display: none;
       align-items: center;
@@ -437,7 +473,6 @@
       padding-bottom: 0;
       border-bottom: none;
     }
-    /* 電腦版偶數項自動左右交錯（右圖左文） */
     .seasonal-item.is-reversed {
       grid-template-columns: 1.1fr 1fr;
     }
@@ -551,7 +586,7 @@
       white-space: pre-wrap;
     }
 
-    /* 品牌傳承與建興路本店（完整保留 CMS 後台對應） */
+    /* 品牌傳承與本店空間（左右視覺平衡 ＋ 靜謐慢速淡入淡出畫框） */
     .about-wrap {
       max-width: 660px;
       margin: 0 auto 3.5rem;
@@ -579,26 +614,69 @@
       padding-top: 3rem;
       border-top: 1px solid var(--border);
     }
-    .store-showcase img {
+    /* 純淨氛圍畫框（支援雙層交叉淡入淡出，無按鈕與頁碼遮擋） */
+    .store-ambient-frame {
+      position: relative;
       width: 100%;
       aspect-ratio: 4 / 3;
-      object-fit: cover;
       border-radius: 10px;
-      display: block;
+      overflow: hidden;
       box-shadow: 0 8px 22px rgba(74, 46, 27, 0.07);
+      background: var(--surface-alt);
     }
-    .store-showcase h3 {
-      font-size: 1.45rem;
+    .store-ambient-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 1.4s ease-in-out;
+    }
+    .store-ambient-img.is-visible {
+      opacity: 1;
+    }
+    .store-info-content h3 {
+      font-size: 1.65rem;
       color: var(--primary);
-      letter-spacing: 0.06em;
-      margin-bottom: 0.75rem;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.25rem;
     }
-    .store-showcase p {
+    .store-subtitle {
+      font-size: 0.9rem;
+      color: var(--accent-hover);
+      letter-spacing: 0.06em;
+      margin-bottom: 1.1rem;
+    }
+    .store-info-content p {
       font-size: 0.96rem;
       font-weight: 300;
       color: var(--text-muted);
       white-space: pre-wrap;
       margin-bottom: 0;
+    }
+    .store-pillars {
+      list-style: none;
+      margin-top: 1.35rem;
+      padding-top: 1.1rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+    .store-pillars li {
+      font-size: 0.88rem;
+      font-weight: 300;
+      color: var(--text-muted);
+      display: flex;
+      align-items: baseline;
+      gap: 0.55rem;
+    }
+    .store-pillars strong {
+      font-weight: 500;
+      color: var(--primary);
+      letter-spacing: 0.04em;
+      flex-shrink: 0;
     }
 
     /* 常見訂購問答 FAQ（極簡手風琴折疊設計，去卡片化） */
@@ -767,7 +845,6 @@
         grid-template-columns: 1fr;
         gap: 1.5rem;
       }
-      /* 手機版雙招牌與商品列表統一恢復「上圖下文」 */
       .signature-layout.is-reversed .signature-media { order: 1; }
       .signature-layout.is-reversed .signature-content { order: 2; }
       .signature-img { aspect-ratio: 4 / 3; }
@@ -876,10 +953,13 @@
     </nav>
   </header>
 
-  <!-- 後台控制：最新公告橫幅 -->
+  <!-- 後台控制：最新公告橫幅（單行靜態 ＋ 暖金呼吸圓點 ／ 多行垂直優雅淡入輪播） -->
   <div class="notice-banner" id="cms-notice-banner">
-    <span class="notice-badge" id="cms-notice-badge"></span>
-    <span id="cms-notice-text"></span>
+    <div class="notice-inner" id="cms-notice-inner">
+      <span class="notice-pulse-dot" aria-hidden="true"></span>
+      <span class="notice-badge" id="cms-notice-badge"></span>
+      <span class="notice-text-wrap" id="cms-notice-text"></span>
+    </div>
   </div>
 
   <main>
@@ -949,7 +1029,7 @@
       <div class="seasonal-list" id="cms-seasonal-list"></div>
     </section>
 
-    <!-- 品牌傳承與建興路本店（完整保留 CMS 後台對應） -->
+    <!-- 品牌傳承與本店空間（支援單圖相容 ／ 多圖慢速交叉淡入淡出） -->
     <section id="about">
       <div class="about-wrap">
         <span class="section-eyebrow">1999 創立・二代傳承</span>
@@ -958,11 +1038,20 @@
         <p>如今由二代接棒，保留老師傅的古法手藝並融入新世代的細膩口感，讓傳統漢餅更貼近現代人的生活。</p>
       </div>
       <div class="store-showcase">
-        <img src="images/store.jpg" alt="綠州堡烘焙高雄三民區建興路門市" id="cms-store-img" loading="lazy">
-        <div>
+        <div class="store-ambient-frame" id="cms-store-frame">
+          <img src="images/store.jpg" alt="綠州堡烘焙高雄三民區門市空間" class="store-ambient-img is-visible" id="cms-store-img-a" loading="lazy">
+          <img src="images/store.jpg" alt="綠州堡烘焙門市陳列氛圍" class="store-ambient-img" id="cms-store-img-b" loading="lazy">
+        </div>
+        <div class="store-info-content">
           <span class="section-eyebrow">FLAGSHIP STORE</span>
-          <h3 id="cms-store-name">建興路本店</h3>
+          <h3 id="cms-store-name">本店</h3>
+          <p class="store-subtitle">高雄三民區・二十餘載在地創始店</p>
           <p id="cms-store-desc">扎根三民區建興路二十餘載，獲選台灣百大伴手禮肯定，堅持原料貨真價實，讓每一位顧客買得安心。</p>
+          <ul class="store-pillars">
+            <li><strong>1999 創立根基</strong><span>二十餘年老師傅古法手藝傳承</span></li>
+            <li><strong>台灣百大伴手禮</strong><span>在地口碑與真材實料品質肯定</span></li>
+            <li><strong>每日新鮮現烤</strong><span>門市現場選購與節慶禮盒預訂</span></li>
+          </ul>
         </div>
       </div>
     </section>
@@ -1119,7 +1208,7 @@
         if (!res.ok) return;
         const data = await res.json();
 
-        // 1. 最新公告橫幅
+        // 1. 最新公告橫幅（單行靜態 ＋ 暖金呼吸圓點 ／ 多行自動垂直淡入輪播 ＋ 2.5~12秒防呆護欄）
         if (data.notice && data.notice.active && data.notice.text && data.notice.text.trim() !== '') {
           const badgeEl = document.getElementById('cms-notice-badge');
           if (data.notice.badge && data.notice.badge.trim() !== '') {
@@ -1128,8 +1217,49 @@
           } else {
             badgeEl.style.display = 'none';
           }
-          document.getElementById('cms-notice-text').textContent = data.notice.text;
-          document.getElementById('cms-notice-banner').style.display = 'block';
+
+          const lines = data.notice.text
+            .split(/\r?\n/)
+            .map(line => line.trim())
+            .filter(Boolean);
+
+          const textEl = document.getElementById('cms-notice-text');
+          const bannerEl = document.getElementById('cms-notice-banner');
+
+          if (lines.length > 0) {
+            textEl.textContent = lines[0];
+            bannerEl.style.display = 'block';
+
+            if (lines.length > 1) {
+              const rawSec = Number(data.notice.interval);
+              const safeSec = (!isNaN(rawSec) && rawSec > 0)
+                ? Math.min(Math.max(rawSec, 2.5), 12)
+                : 4.5;
+
+              let currentLineIdx = 0;
+              let isPaused = false;
+
+              bannerEl.addEventListener('mouseenter', () => { isPaused = true; });
+              bannerEl.addEventListener('mouseleave', () => { isPaused = false; });
+              bannerEl.addEventListener('touchstart', () => { isPaused = true; }, { passive: true });
+              bannerEl.addEventListener('touchend', () => {
+                setTimeout(() => { isPaused = false; }, 1500);
+              }, { passive: true });
+
+              setInterval(() => {
+                if (isPaused || document.hidden) return;
+                textEl.classList.add('is-leaving');
+                setTimeout(() => {
+                  currentLineIdx = (currentLineIdx + 1) % lines.length;
+                  textEl.classList.remove('is-leaving');
+                  textEl.classList.add('is-entering');
+                  textEl.textContent = lines[currentLineIdx];
+                  void textEl.offsetWidth;
+                  textEl.classList.remove('is-entering');
+                }, 420);
+              }, safeSec * 1000);
+            }
+          }
         }
 
         // 2. 首頁封面文字
@@ -1313,7 +1443,7 @@
           document.head.appendChild(scriptEl);
         }
 
-        // 5. 門市資訊與未來 LINE 官方帳號自動連動
+        // 5. 門市資訊、慢速交叉淡入氛圍照片集與未來 LINE 官方帳號自動連動
         if (data.store) {
           if (data.store.name) document.getElementById('cms-store-name').textContent = data.store.name;
           if (data.store.description) document.getElementById('cms-store-desc').textContent = data.store.description;
@@ -1328,9 +1458,48 @@
           if (data.store.address) {
             document.getElementById('cms-store-address').textContent = data.store.address + '（開啟地圖）';
           }
-          if (data.store.image) {
-            document.getElementById('cms-store-img').src = data.store.image.replace(/^\//, '');
+
+          // 向下相容單張字串或新版多張陣列，啟動純淨慢速交叉淡入淡出（Slow Cross-Fade, 3~15秒護欄）
+          let storeImgs = [];
+          if (Array.isArray(data.store.image)) {
+            storeImgs = data.store.image.filter(Boolean).map(src => src.replace(/^\//, ''));
+          } else if (typeof data.store.image === 'string' && data.store.image.trim() !== '') {
+            storeImgs = [data.store.image.trim().replace(/^\//, '')];
           }
+
+          if (storeImgs.length > 0) {
+            const imgA = document.getElementById('cms-store-img-a');
+            const imgB = document.getElementById('cms-store-img-b');
+            imgA.src = storeImgs[0];
+            imgA.classList.add('is-visible');
+
+            if (storeImgs.length > 1) {
+              imgB.src = storeImgs[1];
+              const rawFadeSec = Number(data.store.fade_interval);
+              const safeFadeSec = (!isNaN(rawFadeSec) && rawFadeSec > 0)
+                ? Math.min(Math.max(rawFadeSec, 3), 15)
+                : 5;
+
+              let storeIdx = 0;
+              let showingA = true;
+
+              setInterval(() => {
+                if (document.hidden) return;
+                storeIdx = (storeIdx + 1) % storeImgs.length;
+                if (showingA) {
+                  imgB.src = storeImgs[storeIdx];
+                  imgB.classList.add('is-visible');
+                  imgA.classList.remove('is-visible');
+                } else {
+                  imgA.src = storeImgs[storeIdx];
+                  imgA.classList.add('is-visible');
+                  imgB.classList.remove('is-visible');
+                }
+                showingA = !showingA;
+              }, safeFadeSec * 1000);
+            }
+          }
+
           if (data.store.line_url && data.store.line_url.trim() !== '') {
             const lineUrl = data.store.line_url.trim();
             const lineLink = document.getElementById('cms-line-link');
