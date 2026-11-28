@@ -161,3 +161,33 @@ content:
           - name: line_label
             label: 【未來擴充】LINE 顯示文字（例如：加入官方 LINE 線上預訂）
             type: string
+
+      - name: press_meta
+        label: "⑥-1 最新動態與報導 — 標題設定"
+        type: object
+        fields:
+          - name: eyebrow
+            label: 英文小標（預設：NEWS & PRESS）
+            type: string
+          - name: title
+            label: 區塊標題（預設：最新動態與報導）
+            type: string
+
+      - name: press_items
+        label: "⑥-2 最新動態與報導 — 項目清單（支援多筆・關閉或留白自動隱藏）"
+        type: object
+        list: true
+        fields:
+          - name: visible
+            label: 公開顯示（關閉則暫時隱藏該筆）
+            type: boolean
+            default: true
+          - name: label
+            label: 左側分類標籤（建議 4 字，如：官方粉專、專題報導、媒體採訪、榮獲肯定）
+            type: string
+          - name: title
+            label: 連結或內容標題（如：綠州堡烘焙 Facebook 粉絲專頁）
+            type: string
+          - name: url
+            label: 外部連結網址（有填寫會自動加上連結與 ↗ 箭頭；留白則以純文字顯示）
+            type: string
