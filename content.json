@@ -91,5 +91,12 @@
     "hours": "週一至週日 09:30 - 22:00",
     "address": "高雄市三民區寶中里建興路195號",
     "line_label": "加入官方 LINE 線上預訂"
-  }
+  },
+  "press_items": [
+    {
+      "visible": true,
+      "label": "官方粉專",
+      "title": "https://www.facebook.com/baosbakery3903876"
+    }
+  ]
 }
