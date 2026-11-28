@@ -586,25 +586,30 @@
       white-space: pre-wrap;
     }
 
-    /* 品牌傳承與本店空間（左右視覺平衡 ＋ 靜謐慢速淡入淡出畫框） */
+    /* 品牌傳承與本店空間（標題置中儀式感 ＋ 故事內文靠左黃金閱讀寬度） */
     .about-wrap {
-      max-width: 660px;
+      max-width: 580px;
       margin: 0 auto 3.5rem;
-      text-align: center;
     }
-    .about-wrap h2 {
+    .about-header {
+      text-align: center;
+      margin-bottom: 1.75rem;
+    }
+    .about-header h2 {
       font-size: 1.75rem;
       color: var(--primary);
       letter-spacing: 0.08em;
-      margin-bottom: 1.5rem;
     }
-    .about-wrap p {
+    .about-body {
+      text-align: left;
+    }
+    .about-body p {
       font-size: 0.98rem;
       font-weight: 300;
       color: var(--text);
-      margin-bottom: 1.25rem;
+      margin-bottom: 1.15rem;
     }
-    .about-wrap p:last-child { margin-bottom: 0; }
+    .about-body p:last-child { margin-bottom: 0; }
 
     .store-showcase {
       display: grid;
@@ -614,7 +619,6 @@
       padding-top: 3rem;
       border-top: 1px solid var(--border);
     }
-    /* 純淨氛圍畫框（支援雙層交叉淡入淡出，無按鈕與頁碼遮擋） */
     .store-ambient-frame {
       position: relative;
       width: 100%;
@@ -892,8 +896,9 @@
       .hero-motto { font-size: 0.98rem; margin-bottom: 2.25rem; }
       .signature-content h2 { font-size: 1.75rem; }
       .seasonal-header { margin-bottom: 2rem; }
-      .about-wrap { text-align: left; margin-bottom: 2.5rem; }
-      .about-wrap h2 { font-size: 1.5rem; }
+      .about-wrap { margin-bottom: 2.5rem; }
+      .about-header { text-align: left; }
+      .about-header h2 { font-size: 1.5rem; }
       .store-showcase { padding-top: 2.25rem; }
       .faq-header { text-align: left; }
 
@@ -1029,13 +1034,17 @@
       <div class="seasonal-list" id="cms-seasonal-list"></div>
     </section>
 
-    <!-- 品牌傳承與本店空間（支援單圖相容 ／ 多圖慢速交叉淡入淡出） -->
+    <!-- 品牌傳承與本店空間（大標置中＋內文統一靠左 ＋ 後台可控門市副標與亮點） -->
     <section id="about">
       <div class="about-wrap">
-        <span class="section-eyebrow">1999 創立・二代傳承</span>
-        <h2>把中式漢餅的美好，延續到日常</h2>
-        <p>創立於 1999 年，綠州堡烘焙陪伴無數家庭走過節慶祝壽、婚嫁喜慶與日常茶點時光。我們始終專注於「食」的本質，將最好的品質呈現給顧客。</p>
-        <p>如今由二代接棒，保留老師傅的古法手藝並融入新世代的細膩口感，讓傳統漢餅更貼近現代人的生活。</p>
+        <div class="about-header">
+          <span class="section-eyebrow">1999 創立・二代傳承</span>
+          <h2>把中式漢餅的美好，延續到日常</h2>
+        </div>
+        <div class="about-body">
+          <p>創立於 1999 年，綠州堡烘焙陪伴無數家庭走過節慶祝壽、婚嫁喜慶與日常茶點時光。我們始終專注於「食」的本質，將最好的品質呈現給顧客。</p>
+          <p>如今由二代接棒，保留老師傅的古法手藝並融入新世代的細膩口感，讓傳統漢餅更貼近現代人的生活。</p>
+        </div>
       </div>
       <div class="store-showcase">
         <div class="store-ambient-frame" id="cms-store-frame">
@@ -1045,9 +1054,9 @@
         <div class="store-info-content">
           <span class="section-eyebrow">FLAGSHIP STORE</span>
           <h3 id="cms-store-name">本店</h3>
-          <p class="store-subtitle">溫潤木質空間・誠心款待每一位來客</p>
+          <p class="store-subtitle" id="cms-store-subtitle">溫潤木質空間・誠心款待每一位來客</p>
           <p id="cms-store-desc">扎根三民區建興路二十餘載，獲選台灣百大伴手禮肯定，堅持原料貨真價實，讓每一位顧客買得安心。</p>
-          <ul class="store-pillars">
+          <ul class="store-pillars" id="cms-store-pillars">
             <li><strong>每日新鮮現烤</strong><span>熱騰出爐，歡迎門市親自挑選</span></li>
             <li><strong>節慶喜慶訂製</strong><span>祝壽壽桃與伴手禮盒專人洽詢</span></li>
             <li><strong>嚴選純淨原料</strong><span>成分單純無添加，全家安心品嚐</span></li>
@@ -1443,10 +1452,23 @@
           document.head.appendChild(scriptEl);
         }
 
-        // 5. 門市資訊、慢速交叉淡入氛圍照片集與未來 LINE 官方帳號自動連動
+        // 5. 門市資訊、後台可控副標與亮點、慢速交叉淡入氛圍照片集與未來 LINE 官方帳號自動連動
         if (data.store) {
           if (data.store.name) document.getElementById('cms-store-name').textContent = data.store.name;
+          if (data.store.subtitle && data.store.subtitle.trim() !== '') {
+            document.getElementById('cms-store-subtitle').textContent = data.store.subtitle.trim();
+          }
           if (data.store.description) document.getElementById('cms-store-desc').textContent = data.store.description;
+
+          if (Array.isArray(data.store.highlights) && data.store.highlights.length > 0) {
+            const validHighlights = data.store.highlights.filter(h => h && (h.title || h.text));
+            if (validHighlights.length > 0) {
+              document.getElementById('cms-store-pillars').innerHTML = validHighlights.map(h => `
+                <li><strong>${h.title || ''}</strong><span>${h.text || ''}</span></li>
+              `).join('');
+            }
+          }
+
           if (data.store.hours) document.getElementById('cms-store-hours').textContent = data.store.hours;
           if (data.store.phone) {
             const cleanPhone = data.store.phone.replace(/[^0-9]/g, '');
